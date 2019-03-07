@@ -1,0 +1,7 @@
+ln -s ~/Dropbox/config-files/bash_profile ~/.bash_profile
+ln -s ~/Dropbox/config-files/Renviron ~/.Renviron
+ln -s ~/Dropbox/config-files/vimrc ~/.vimrc
+ln -s ~/Dropbox/config-files/skeleton.r ~/.vim/templates/skeleton.r
+ln -s ~/Dropbox/config-files/skeleton.rmd ~/.vim/templates/skeleton.rmd
+ln -s ~/Dropbox/config-files/Rprofile ~/.Rprofile
+ln -s ~/Dropbox/config-files/tmuxconf ~/.tmux.conf

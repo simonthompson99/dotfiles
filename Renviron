@@ -1,0 +1,2 @@
+#-- set the timezone, get valid timezone names with OlsonNames()
+TZ="Europe/London"

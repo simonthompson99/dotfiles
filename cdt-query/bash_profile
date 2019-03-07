@@ -1,0 +1,5 @@
+# go to my projects folder
+alias proj='cd ~/Projects'
+
+# go to scratch folder
+alias scratch='cd ~/scratch'
