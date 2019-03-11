@@ -1,6 +1,9 @@
 #set ctrl-a as the prefix
 set -g prefix C-a
 
+#set correct terminal so colors disply
+set -g default-terminal "screen-256color"
+
 #prevent delay with using escape key
 set -s escape-time 0
 
