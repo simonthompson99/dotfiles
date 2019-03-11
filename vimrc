@@ -65,8 +65,10 @@ tnoremap <Esc> <C-\><C-n>
 let g:airline_theme='solarized'     " set airline theme to solarized
 let g:airline_solarized_bg='dark'   " set it to the dark version
 set pastetoggle=<F2>     " use F2 to toggle between paste modes
-" just semi-colon for doing stuff
-nnoremap ; :
+" just semi-colon for doing stuff, but then double-tap to get a semi-colon
+" (repeat last f or t)
+map ; :
+noremap ;; ;
 set background=dark      " use dark background
 colorscheme solarized    " use solarized colorscheme
 

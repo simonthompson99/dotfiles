@@ -20,29 +20,62 @@ alias quicktab='python /Users/simonthompson/Documents/Projects/utilities/quickta
 alias mquicktab='python /Users/simonthompson/Documents/Projects/utilities/mquicktab/mquicktab.py'
 
 ## aliases for connecting to cdt server stuff
-#-- alias to connect to dams db copy
-alias dams="clear; echo 'DAMS'; ssh -L 5438:10.1.24.33:5432 sthompson@10.1.24.38"
+#-- function to connect to dams db copy
+function dams () {
+	clear
+	echo "[.....          [.       [..       [..  [.. ..  ";
+	echo "[..   [..      [. ..     [. [..   [...[..    [..";
+	echo "[..    [..    [.  [..    [.. [.. [ [.. [..      ";
+	echo "[..    [..   [..   [..   [..  [..  [..   [..    ";
+	echo "[..    [..  [...... [..  [..   [.  [..      [.. ";
+	echo "[..   [..  [..       [.. [..       [..[..    [..";
+	echo "[.....    [..         [..[..       [..  [.. ..  ";
+	echo "                                                ";
+	colorssh -L 5438:10.1.24.33:5432 sthompson@10.1.24.38
+}
 
 #-- alias to connect to ddf Prod db copy
 alias ddfprod="clear; echo 'DDF PROD'; ssh -L 5439:10.1.24.34:5432 sthompson@10.1.24.38"
 
-#-- alias to connect to mis db copy
-alias mis="clear; echo 'MIS'; ssh -L 5440:10.1.24.37:5432 sthompson@10.1.24.38"
+#-- function to connect to mis db copy
+function mis () {
+	clear 
+	echo "__/\\\\____________/\\\\__/\\\\\\\\\\\_____/\\\\\\\\\\\___        ";
+	echo " _\/\\\\\\________/\\\\\\_\/////\\\///____/\\\/////////\\\_       ";
+	echo "  _\/\\\//\\\____/\\\//\\\_____\/\\\______\//\\\______\///__      ";
+	echo "   _\/\\\\///\\\/\\\/_\/\\\_____\/\\\_______\////\\\_________     ";
+	echo "    _\/\\\__\///\\\/___\/\\\_____\/\\\__________\////\\\______    ";
+	echo "     _\/\\\____\///_____\/\\\_____\/\\\_____________\////\\\___   ";
+	echo "      _\/\\\_____________\/\\\_____\/\\\______/\\\______\//\\\__  ";
+	echo "       _\/\\\_____________\/\\\__/\\\\\\\\\\\_\///\\\\\\\\\\\/___ ";
+	echo "        _\///______________\///__\///////////____\///////////_____";
+	colorssh -L 5440:10.1.24.37:5432 sthompson@10.1.24.38
+}
 
-#-- alias to connect to index db
-alias indx="clear; echo 'INDEX'; ssh -L 5441:10.1.24.39:5433 sthompson@10.1.24.38"
+#-- function to connect to index db
+function indx () {
+	clear
+	echo "::::::::::: ::::    ::: :::::::::  :::    ::: ";
+	echo "    :+:     :+:+:   :+: :+:    :+: :+:    :+: ";
+	echo "    +:+     :+:+:+  +:+ +:+    +:+  +:+  +:+  ";
+	echo "    +#+     +#+ +:+ +#+ +#+    +:+   +#++:+   ";
+	echo "    +#+     +#+  +#+#+# +#+    +#+  +#+  +#+  ";
+	echo "    #+#     #+#   #+#+# #+#    #+# #+#    #+# ";
+	echo "########### ###    #### #########  ###    ### ";
+	colorssh -L 5441:10.1.24.39:5433 sthompson@10.1.24.38
+}
 
 #-- function to make scp to query box easier
-toqueryscp() {
+function toqueryscp () {
 	scp "$1" sthompson@10.1.24.38:/home/sthompson/"$2"
 }
-fromqueryscp() {
+function fromqueryscp () {
 	scp sthompson@10.1.24.38:/home/sthompson/"$1" "$2"
 }
 
 # function to open up temporary file in vim, can specify file extension after command
 # defaults to txt
-mktmp() {
+function mktmp () {
 	FILE_SUFFIX=${1:-txt}
 	FILE_NAME="/Users/simonthompson/scratch/tmp$(date +%Y%m%d%H%M%S).$FILE_SUFFIX"
 	vim $FILE_NAME
@@ -67,8 +100,3 @@ function colorssh() {
   ssh $*
   tabc
 }
-
-alias ssh="colorssh"
-
-#add in fzf commands
-#[ -f ~/.fzf.bash ] && source ~/.fzf.bash

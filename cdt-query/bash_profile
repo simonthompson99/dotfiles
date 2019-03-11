@@ -3,3 +3,12 @@ alias proj='cd ~/Projects'
 
 # go to scratch folder
 alias scratch='cd ~/scratch'
+
+# function to open up temporary file in vim, can specify file extension after command
+# defaults to txt
+function mktmp () {
+	FILE_SUFFIX=${1:-txt}
+	FILE_NAME="~/scratch/tmp$(date +%Y%m%d%H%M%S).$FILE_SUFFIX"
+	vim $FILE_NAME
+}
+
