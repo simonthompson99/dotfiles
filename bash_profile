@@ -32,6 +32,7 @@ function dams () {
 	echo "[.....    [..         [..[..       [..  [.. ..  ";
 	echo "                                                ";
 	colorssh -L 5438:10.1.24.33:5432 sthompson@10.1.24.38
+	echo -ne "\033;DAMS\007"
 }
 
 #-- alias to connect to ddf Prod db copy
@@ -50,6 +51,7 @@ function mis () {
 	echo "       _\/\\\_____________\/\\\__/\\\\\\\\\\\_\///\\\\\\\\\\\/___ ";
 	echo "        _\///______________\///__\///////////____\///////////_____";
 	colorssh -L 5440:10.1.24.37:5432 sthompson@10.1.24.38
+	echo -ne "\033;MIS\007"
 }
 
 #-- function to connect to index db
@@ -63,6 +65,7 @@ function indx () {
 	echo "    #+#     #+#   #+#+# #+#    #+# #+#    #+# ";
 	echo "########### ###    #### #########  ###    ### ";
 	colorssh -L 5441:10.1.24.39:5433 sthompson@10.1.24.38
+	echo -ne "\033;INDX\007"
 }
 
 #-- function to make scp to query box easier
