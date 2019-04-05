@@ -31,7 +31,9 @@ Plugin 'scrooloose/nerdtree'
 "send lines to a terminal
 Plugin 'jalvesaq/vimcmdline'
 " get solarized theme for vim
-Bundle 'altercation/vim-colors-solarized'
+Plugin 'altercation/vim-colors-solarized'
+" manage git from vim
+Plugin 'tpope/vim-fugitive'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 
