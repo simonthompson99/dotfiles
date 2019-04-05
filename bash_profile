@@ -22,6 +22,7 @@ alias mquicktab='python /Users/simonthompson/Documents/Projects/utilities/mquick
 ## aliases for connecting to cdt server stuff
 #-- function to connect to dams db copy
 function dams () {
+	echo -ne "\033]0;"DAMS"\007"
 	clear
 	echo "[.....          [.       [..       [..  [.. ..  ";
 	echo "[..   [..      [. ..     [. [..   [...[..    [..";
@@ -32,7 +33,6 @@ function dams () {
 	echo "[.....    [..         [..[..       [..  [.. ..  ";
 	echo "                                                ";
 	colorssh -L 5438:10.1.24.33:5432 sthompson@10.1.24.38
-	echo -ne "\033;DAMS\007"
 }
 
 #-- alias to connect to ddf Prod db copy
@@ -40,6 +40,7 @@ alias ddfprod="clear; echo 'DDF PROD'; ssh -L 5439:10.1.24.34:5432 sthompson@10.
 
 #-- function to connect to mis db copy
 function mis () {
+	echo -ne "\033]0;"MIS"\007"
 	clear 
 	echo "__/\\\\____________/\\\\__/\\\\\\\\\\\_____/\\\\\\\\\\\___        ";
 	echo " _\/\\\\\\________/\\\\\\_\/////\\\///____/\\\/////////\\\_       ";
@@ -51,11 +52,11 @@ function mis () {
 	echo "       _\/\\\_____________\/\\\__/\\\\\\\\\\\_\///\\\\\\\\\\\/___ ";
 	echo "        _\///______________\///__\///////////____\///////////_____";
 	colorssh -L 5440:10.1.24.37:5432 sthompson@10.1.24.38
-	echo -ne "\033;MIS\007"
 }
 
 #-- function to connect to index db
 function indx () {
+	echo -ne "\033]0;"INDX"\007"
 	clear
 	echo "::::::::::: ::::    ::: :::::::::  :::    ::: ";
 	echo "    :+:     :+:+:   :+: :+:    :+: :+:    :+: ";
@@ -65,7 +66,6 @@ function indx () {
 	echo "    #+#     #+#   #+#+# #+#    #+# #+#    #+# ";
 	echo "########### ###    #### #########  ###    ### ";
 	colorssh -L 5441:10.1.24.39:5433 sthompson@10.1.24.38
-	echo -ne "\033;INDX\007"
 }
 
 #-- function to make scp to query box easier
