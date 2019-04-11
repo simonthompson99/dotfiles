@@ -92,6 +92,20 @@ function! s:DiffWithSaved()
 endfunction
 com! DiffSaved call s:DiffWithSaved()
 
+" customise Goyo so that move down line by line
+function! s:goyo_enter()
+  nnoremap j gj
+  nnoremap k gk
+endfunction
+
+function! s:goyo_leave()
+  nunmap j
+  nunmap k
+endfunction
+
+autocmd! User GoyoEnter nested call <SID>goyo_enter()
+autocmd! User GoyoLeave nested call <SID>goyo_leave()
+
 """ VIM-R COMMANDS
 let R_assign_map = ";"  " get <- with a double-tap on semi-colon
 let R_df_viewer = "wrangleR::rdtv(%s)"  " change the data viewer to be rdtv function in wrangleR
