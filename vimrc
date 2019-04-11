@@ -34,6 +34,8 @@ Plugin 'jalvesaq/vimcmdline'
 Plugin 'altercation/vim-colors-solarized'
 " manage git from vim
 Plugin 'tpope/vim-fugitive'
+" get distraction free mode
+Plugin 'junegunn/goyo.vim'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 
@@ -102,6 +104,9 @@ nmap <silent> <LocalLeader>g :call RAction("dplyr::glimpse")<CR>
 "to get number of rows in df
 nmap <silent> <LocalLeader>nr :call RAction("nrow")<CR>
 let R_rcomment_string = "#-- "          " change what gets added as a comment character
+"enable folding but open unfolded
+let r_syntax_folding = 1
+set nofoldenable
 
 """ VIM TEMPLATES
 "setup templates
