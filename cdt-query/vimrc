@@ -34,6 +34,8 @@ Plugin 'jalvesaq/vimcmdline'
 Plugin 'altercation/vim-colors-solarized'
 " manage git from vim
 Plugin 'tpope/vim-fugitive'
+" get distraction free mode
+Plugin 'junegunn/goyo.vim'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 
@@ -90,6 +92,20 @@ function! s:DiffWithSaved()
 endfunction
 com! DiffSaved call s:DiffWithSaved()
 
+" customise Goyo so that move down line by line
+function! s:goyo_enter()
+  nnoremap j gj
+  nnoremap k gk
+endfunction
+
+function! s:goyo_leave()
+  nunmap j
+  nunmap k
+endfunction
+
+autocmd! User GoyoEnter nested call <SID>goyo_enter()
+autocmd! User GoyoLeave nested call <SID>goyo_leave()
+
 """ VIM-R COMMANDS
 let R_assign_map = ";"  " get <- with a double-tap on semi-colon
 let R_df_viewer = "wrangleR::rdtv(%s)"  " change the data viewer to be rdtv function in wrangleR
@@ -102,6 +118,9 @@ nmap <silent> <LocalLeader>g :call RAction("dplyr::glimpse")<CR>
 "to get number of rows in df
 nmap <silent> <LocalLeader>nr :call RAction("nrow")<CR>
 let R_rcomment_string = "#-- "          " change what gets added as a comment character
+"enable folding but open unfolded
+let r_syntax_folding = 1
+set nofoldenable
 
 """ VIM TEMPLATES
 "setup templates
