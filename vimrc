@@ -75,6 +75,10 @@ map ; :
 noremap ;; ;
 set background=dark      " use dark background
 colorscheme solarized    " use solarized colorscheme
+nnoremap H gT     " use H to go back in tabs
+nnoremap L gt     " use L to go forward in tabs
+nnoremap <Leader>zz :let &scrolloff=999-&scrolloff<CR> " use leader-zz to focus cursor in the middle of the screen
+set scrolloff=999 		 " by default have cursor in the middle of the screen
 
 """ VIM ALIASES
 command Projects cd ~/Documents/Projects
