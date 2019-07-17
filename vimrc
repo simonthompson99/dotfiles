@@ -36,6 +36,14 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'tpope/vim-fugitive'
 " get distraction free mode
 Plugin 'junegunn/goyo.vim'
+" get log file highlighting
+Plugin 'mtdl9/vim-log-highlighting'
+" get git changes in gutter
+Plugin 'airblade/vim-gitgutter'
+" show indent guides
+Plugin 'nathanaelkane/vim-indent-guides'
+" for file opening and searches
+Plugin 'kien/ctrlp.vim'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 
@@ -68,6 +76,7 @@ syntax enable     " enable syntax highlighting
 tnoremap <Esc> <C-\><C-n>    
 let g:airline_theme='solarized'     " set airline theme to solarized
 let g:airline_solarized_bg='dark'   " set it to the dark version
+let g:airline#extensions#whitespace#enabled = 0 " airline always flags mixed intent on r files which is annoying so turn this off
 set pastetoggle=<F2>     " use F2 to toggle between paste modes
 " just semi-colon for doing stuff, but then double-tap to get a semi-colon
 " (repeat last f or t)
@@ -75,14 +84,23 @@ map ; :
 noremap ;; ;
 set background=dark      " use dark background
 colorscheme solarized    " use solarized colorscheme
+let g:indent_guides_auto_colors = 0
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=black
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=black
+let g:indent_guides_guide_size = 1 " get very subtle indent highlights and have it start from starup
+let g:indent_guides_color_change_percent = 1
+let g:indent_guides_enable_on_vim_startup = 1
 nnoremap H gT     " use H to go back in tabs
 nnoremap L gt     " use L to go forward in tabs
 nnoremap <Leader>zz :let &scrolloff=999-&scrolloff<CR> " use leader-zz to focus cursor in the middle of the screen
 set scrolloff=999 		 " by default have cursor in the middle of the screen
+let g:csv_nomap_cr = 1   " prevent csv plugin from remapping control keys
+let g:ctrlp_map = '<c-e>' " change CtrlP mapping to be something else
 
 """ VIM ALIASES
 command Projects cd ~/Documents/Projects
 command Scratch cd ~/scratch
+command NT NERDTree
 
 """ VIM FUNCTIONS
 " function to see difference compared to last saved version
