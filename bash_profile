@@ -99,7 +99,16 @@ function tabc() {
 }
 
 function colorssh() {
-  tabc SSH
-  ssh $*
-  tabc
+	# change either tmux background or terminal background color when sshing
+  	if [[ "$TERM" = "screen"* ]] && [[ -n "$TMUX" ]]; then
+		tmux select-pane -P 'bg=white'
+	else
+		tabc SSH
+	fi;
+	ssh $*
+  	if [[ "$TERM" = "screen"* ]] && [[ -n "$TMUX" ]]; then
+		tmux select-pane -P 'bg=default'
+	else
+		tabc 
+	fi;
 }
