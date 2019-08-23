@@ -3,8 +3,6 @@
 1. [Postgres](#postgres)
 1. [R](#r)
 
-fdsjkl s
-
 # Bash <a name='bash'></a>
 
 ## Commands
