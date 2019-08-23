@@ -153,7 +153,7 @@ select *
 from schema1.the_table;
 ```
 
-## R <a name='r'></a>
+# R <a name='r'></a>
 
 ### Commands
 
