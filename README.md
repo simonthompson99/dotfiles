@@ -3,10 +3,11 @@
 1. [Postgres](#postgres)
 1. [R](#r)
 
+fdsjkl s
 
-## Bash <a name='bash'></a>
+# Bash <a name='bash'></a>
 
-### Commands
+## Commands
 
 `proj` go to projects directory
 
@@ -36,15 +37,15 @@
 
 `google|stackoverflow <search>` do google or stackoverflow search for something
 
-### Snippets
+## Snippets
 
-#### Convert xlsx to psv
+### Convert xlsx to psv
 
 ```bash
 find . -type f -name "*.xlsx" | while read file; do ssconvert -O 'separator=|' "$file" "${file%.xlsx}.txt"; done
 ```
 
-#### scp with rename
+### scp with rename
 
 scp files and rename according to psv file with info, in this case for-download is `<participant_id>|<file_num>|<source_filename>`
 
@@ -55,13 +56,13 @@ cat for-download.txt | while IFS='|' read part id inf; do
 done
 ```
 
-#### Count number of files by file extension
+### Count number of files by file extension
 
 ```bash
 find . -type f | sed -e 's/.*\.//' | sed -e 's/.*\///' | sort | uniq -c | sort -rn > file-extension-totals.txt
 ```
 
-#### Flatten tree of pngs to pdfs
+### Flatten tree of pngs to pdfs
 
 Takes a folder tree of pngs and converts them to pdf per folder. e.g.
 ```
@@ -86,11 +87,11 @@ do
 done
 ```
 
-## ImageMagick <a name='imagemagick'></a>
+# ImageMagick <a name='imagemagick'></a>
 
-### Snippets
+## Snippets
 
-#### Convert pdf to numbered pngs
+### Convert pdf to numbered pngs
 
 Converts folder of pdfs to set of pngs with `_p01` suffixes
 
@@ -101,9 +102,9 @@ for file in *.pdf; do
 done
 ```
 
-## Postgres <a name='postgres'></a>
+# Postgres <a name='postgres'></a>
 
-### Commands
+## Commands
 
 `<some date> > now() - interval '9 month'` get only rows from last 9 months
 
@@ -111,9 +112,9 @@ done
  
 `string_agg(<col>, ';')` equivalent to R's paste(<field>, collapse = ";")
 
-### Snippets
+## Snippets
 
-#### Row number over partition
+### Row number over partition
 
 ```sql
 select participant_id
@@ -121,7 +122,7 @@ select participant_id
 from blahdiblah
 ```
  
-#### Select random rows
+### Select random rows
  
 ```sql
 -- select a random percentage of rows of table
@@ -130,7 +131,7 @@ select * from my_table tablesample bernoulli(<percentage in numbers, e.g. 10>)
 select * from query order by random() limit 100
 ```
 
-#### Transfer schema from index to local
+### Transfer schema from index to local
 
 ```bash
 # on query
@@ -143,7 +144,7 @@ sed -i .bak 's/OWNER TO dw_user;/OWNER TO simon;/g' <dump_file>.sql
 psql -d <target_db> -h localhost -p 5432 -U simon < <dump_file>.sql
 ```
 
-#### Copy table from one schema to another
+### Copy table from one schema to another
 
 ```sql
 create table schema2.the_table (like schema1.the_table including all);
@@ -155,15 +156,15 @@ from schema1.the_table;
 
 # R <a name='r'></a>
 
-### Commands
+## Commands
 
 `sprintf("%02d", <num>)` get constant width number as string (9 > 09), increase %02d to get more width
  
 `format(now(), "%Y%m%d-%H%M%S")` get timestamp
  
-#### dplyr 
+### dplyr 
 
-##### Commands
+#### Commands
 
 |Command|Purpose|
 |-------|-------|
@@ -181,7 +182,7 @@ from schema1.the_table;
 |`sample_n()`|sample a random number of rows|
 |`sample_frac()`|sample a random proportion of rows|
 
-##### `select()` Arguments
+#### `select()` Arguments
 
 | Argument | Purpose |
 |----------|---------|
@@ -193,9 +194,9 @@ from schema1.the_table;
 |`one_of(“x”, “y”, “z”)`|Selects variables provided in a character vector|
  
 
-### Snippets and Functions
+## Snippets and Functions
 
-#### Round nicely
+### Round nicely
 
 Round a number to a pleasant-looking number
 
@@ -219,7 +220,7 @@ e.g.:
 [1] 4000000000
 ```
 
-#### Export dataframe by factor
+### Export dataframe by factor
 
 Write out to a zip file a set of dataframes per category
 
@@ -240,7 +241,7 @@ writeTablesPerCat <- function(df, cat, fn, zip_flags = "-j", na_string = "", rep
 }
 ```
 
-#### Export date-stamped csv
+### Export date-stamped csv
 
 ```r
 writeCSV <- function(df, fn){
@@ -249,7 +250,7 @@ writeCSV <- function(df, fn){
 }
 ```
 
-#### Export to formatted xlsx
+### Export to formatted xlsx
 
 ```r
 writeXlsx <- function(d, fn, sheet_name = ''){
@@ -268,7 +269,7 @@ writeXlsx <- function(d, fn, sheet_name = ''){
 }
 ```
 
-#### Hash data
+### Hash data
 
 Hash each line of a dataframe
 
@@ -277,7 +278,7 @@ require(digest)
 df$hash <- apply(df, 1, digest)
 ```
 
-#### dplyr
+### dplyr
 
 ```r
 #-- convert df to tibble
