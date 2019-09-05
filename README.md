@@ -112,6 +112,14 @@ done
 
 ## Snippets
 
+### Create new database on local
+
+```bash
+psql postgres -U simonthompson
+create database <db_name>;
+grant all privileges on database <db_name> to simon;
+```
+
 ### Row number over partition
 
 ```sql
