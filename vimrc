@@ -30,6 +30,7 @@ Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'scrooloose/nerdtree'
 "send lines to a terminal
 Plugin 'jalvesaq/vimcmdline'
+"Plugin 'habamax/vim-sendtoterm'
 " get solarized theme for vim
 Plugin 'altercation/vim-colors-solarized'
 " manage git from vim
@@ -42,8 +43,11 @@ Plugin 'mtdl9/vim-log-highlighting'
 Plugin 'airblade/vim-gitgutter'
 " show indent guides
 Plugin 'nathanaelkane/vim-indent-guides'
-" for file opening and searches
-Plugin 'kien/ctrlp.vim'
+" For Snippets
+" Track the engine.
+Plugin 'SirVer/ultisnips'
+" Snippets are separated from the engine. Add this if you want them:
+Plugin 'honza/vim-snippets'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 
@@ -95,12 +99,27 @@ nnoremap L gt     " use L to go forward in tabs
 nnoremap <Leader>zz :let &scrolloff=999-&scrolloff<CR> " use leader-zz to focus cursor in the middle of the screen
 set scrolloff=999 		 " by default have cursor in the middle of the screen
 let g:csv_nomap_cr = 1   " prevent csv plugin from remapping control keys
-let g:ctrlp_map = '<c-e>' " change CtrlP mapping to be something else
+nnoremap <Leader>b :ls<CR>:b<Space> 
+" allows <Leader>b to accept the number of a buffer afterwards to select that buffer
+nnoremap <Leader>nt :NERDTree<CR>
+" remaps leader nt to opening up NERD tree
+" UltiSnips Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger = "<C-l>"
+let g:UltiSnipsJumpForwardTrigger = "<C-j>"
+let g:UltiSnipsJumpBackwardTrigger = "<C-k>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+
+""" git remaps
+nnoremap <Leader>gs :Gstatus<CR>
+nnoremap <Leader>ga :Gwrite<CR>
+nnoremap <Leader>gc :Gcommit<CR>
+nnoremap <Leader>gp :Gpush<CR>
 
 """ VIM ALIASES
 command Projects cd ~/Documents/Projects
 command Scratch cd ~/scratch
-command NT NERDTree
 
 """ VIM FUNCTIONS
 " function to see difference compared to last saved version
@@ -152,5 +171,6 @@ if has("autocmd")
     autocmd BufNewFile *.r 0r ~/.vim/templates/skeleton.r
     autocmd BufNewFile *.R 0r ~/.vim/templates/skeleton.r
     autocmd BufNewFile *.Rmd 0r ~/.vim/templates/skeleton.rmd
+    autocmd BufNewFile *.py 0r ~/.vim/templates/skeleton.py
   augroup END
 endif
