@@ -1,6 +1,10 @@
 #set ctrl-a as the prefix
 set -g prefix C-a
 
+#set default term to zsh
+set-option -g default-shell /usr/local/bin/zsh
+set -g default-command /usr/local/bin/zsh
+
 #prevent delay with using escape key
 set -s escape-time 0
 
@@ -23,7 +27,7 @@ bind -n C-\ run "(tmux display-message -p '#{pane_current_command}' | grep -iq v
 
 # for copy paste in Mac OS, needs brew install reattach-to-user-namespace first
 # use v selection keys then y to copy to system buffer
-set-option -g default-command "reattach-to-user-namespace -l bash"
+set-option -g default-command "reattach-to-user-namespace -l zsh"
 bind-key -T copy-mode-vi 'v' send -X begin-selection
 bind-key -T copy-mode-vi 'y' send -X copy-pipe-and-cancel "reattach-to-user-namespace pbcopy"
 
@@ -47,6 +51,9 @@ set-option -g bell-action none
 # Start windows and panes at 1, not 0
 set -g base-index 1
 setw -g pane-base-index 1
+
+# renumber the windows rather than keeping original numbers
+set-option -g renumber-windows on
 
 #### COLOUR (Solarized dark)
 
@@ -86,7 +93,7 @@ set-window-option -g window-status-bell-style fg=black,bg=red #base02, red
 
 # Status line.
 set -g status-right "#{pane_current_path}"
-set -g status-left "%Y-%m-%d %H:%M:%S  "
+set -g status-left "%Y-%m-%d %H:%M  "
 set -g status-left-length 20
  
 # easily reload tmux conf with <prefix> + r
