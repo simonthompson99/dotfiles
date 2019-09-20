@@ -5,11 +5,11 @@ alias shproj='cd ~/Documents/Projects/short-projects'
 # go to scratch folder
 alias scratch='cd ~/scratch'
 
+# keep getting into trouble calling script by mistake
+alias script='echo "you did NOT want to do that\n"'
+
 # run the ddf connection script
 alias ddf='bash ~/scripts/ddf-connect/ddf_ssh.sh'
-
-# added by Anaconda3 5.0.1 installer
-export PATH="/Users/simonthompson/anaconda3/bin:$PATH"
 
 # alias for vim to nvim
 alias vim="nvim"
@@ -18,6 +18,16 @@ alias vim="nvim"
 alias twosets='python /Users/simonthompson/Documents/Projects/utilities/twosets/twosets.py'
 alias quicktab='python /Users/simonthompson/Documents/Projects/utilities/quicktab/quicktab.py'
 alias mquicktab='python /Users/simonthompson/Documents/Projects/utilities/mquicktab/mquicktab.py'
+
+# Virtualenv aliases and functions
+alias vcreate='virtualenv venv -p python3 --no-site-packages'
+function vact () {
+	source venv/bin/activate && tmux select-pane -P 'fg=blue'
+}
+function vdeact () {
+	deactivate
+	tmux select-pane -P 'fg=default'
+}
 
 ## aliases for connecting to cdt server stuff
 #-- function to connect to dams db copy
@@ -101,14 +111,23 @@ function tabc() {
 function colorssh() {
 	# change either tmux background or terminal background color when sshing
   	if [[ "$TERM" = "screen"* ]] && [[ -n "$TMUX" ]]; then
-		tmux select-pane -P 'bg=white'
+  		# if in tmux then get window and pane index of where we are
+		tmux_pane_index=$(tmux display -pt "${TMUX_PANE:?}" '#{pane_index}')
+		tmux_win_index=$(tmux display-message -p '#I')
+		# turn foreground yellow
+		tmux select-pane -t:$tmux_win_index.$tmux_pane_index -P 'fg=yellow'
+		# run ssh and turn it back to default if it executes, or if it fails (pipes through to ||)
+		ssh $* && tmux select-pane -t:$tmux_win_index.$tmux_pane_index -P 'fg=default' || tmux select-pane -t:$tmux_win_index.$tmux_pane_index -P 'fg=default'
 	else
-		tabc SSH
-	fi;
-	ssh $*
-  	if [[ "$TERM" = "screen"* ]] && [[ -n "$TMUX" ]]; then
-		tmux select-pane -P 'bg=default'
-	else
-		tabc 
+		tabc SSH && ssh $* && tabc || tabc
 	fi;
 }
+
+# allow searching of google and stackoverflow from command line
+function google() {
+    open -na "Google Chrome" --args "https://www.google.com/search?q=$*"
+}
+function stackoverflow() {
+    open -na "Google Chrome" --args "https://www.google.com/search?q=site:stackoverflow.com $*"
+}
+
