@@ -4,11 +4,24 @@ alias proj='cd ~/Projects'
 # go to scratch folder
 alias scratch='cd ~/scratch'
 
+# keep getting into trouble calling script by mistake
+alias script='echo "you did NOT want to do that\n"'
+
 # function to open up temporary file in vim, can specify file extension after command
 # defaults to txt
 function mktmp () {
 	FILE_SUFFIX=${1:-txt}
 	FILE_NAME="~/scratch/tmp$(date +%Y%m%d%H%M%S).$FILE_SUFFIX"
 	vim $FILE_NAME
+}
+
+# Virtualenv aliases and functions
+alias vcreate='virtualenv venv -p python3 --no-site-packages'
+function vact () {
+	source venv/bin/activate && tmux select-pane -P 'fg=blue'
+}
+function vdeact () {
+	deactivate
+	tmux select-pane -P 'fg=default'
 }
 

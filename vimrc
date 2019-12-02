@@ -30,7 +30,6 @@ Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'scrooloose/nerdtree'
 "send lines to a terminal
 Plugin 'jalvesaq/vimcmdline'
-"Plugin 'habamax/vim-sendtoterm'
 " get solarized theme for vim
 Plugin 'altercation/vim-colors-solarized'
 " manage git from vim
@@ -43,11 +42,17 @@ Plugin 'mtdl9/vim-log-highlighting'
 Plugin 'airblade/vim-gitgutter'
 " show indent guides
 Plugin 'nathanaelkane/vim-indent-guides'
-" For Snippets
+" enable ripgrep searching from grep
+Plugin 'jremmen/vim-ripgrep'
+"For Snippets
 " Track the engine.
 Plugin 'SirVer/ultisnips'
 " Snippets are separated from the engine. Add this if you want them:
 Plugin 'honza/vim-snippets'
+" For working with yml files
+Plugin 'mrk21/yaml-vim'
+" To give a handy, slimline position file position indictator in statusline
+Plugin 'drzel/vim-line-no-indicator'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 
@@ -81,6 +86,9 @@ tnoremap <Esc> <C-\><C-n>
 let g:airline_theme='solarized'     " set airline theme to solarized
 let g:airline_solarized_bg='dark'   " set it to the dark version
 let g:airline#extensions#whitespace#enabled = 0 " airline always flags mixed intent on r files which is annoying so turn this off
+let g:airline_section_x = '%{&filetype}'
+let g:airline_section_y = '%#__accent_bold#%{LineNoIndicator()}%#__restore__#'
+let g:airline_section_z = '%2c'
 set pastetoggle=<F2>     " use F2 to toggle between paste modes
 " just semi-colon for doing stuff, but then double-tap to get a semi-colon
 " (repeat last f or t)
@@ -103,10 +111,14 @@ nnoremap <Leader>b :ls<CR>:b<Space>
 " allows <Leader>b to accept the number of a buffer afterwards to select that buffer
 nnoremap <Leader>nt :NERDTree<CR>
 " remaps leader nt to opening up NERD tree
+let NERDTreeShowHidden=1 " show hidden files in NERDTRee
 " UltiSnips Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger = "<C-l>"
 let g:UltiSnipsJumpForwardTrigger = "<C-j>"
 let g:UltiSnipsJumpBackwardTrigger = "<C-k>"
+ " Create Blank Newlines and stay in Normal mode
+nnoremap zj o<Esc>k
+nnoremap zk O<Esc>j
 
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
@@ -116,6 +128,10 @@ nnoremap <Leader>gs :Gstatus<CR>
 nnoremap <Leader>ga :Gwrite<CR>
 nnoremap <Leader>gc :Gcommit<CR>
 nnoremap <Leader>gp :Gpush<CR>
+
+" add yaml stuffs
+au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
 """ VIM ALIASES
 command Projects cd ~/Documents/Projects

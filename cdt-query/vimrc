@@ -36,6 +36,23 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'tpope/vim-fugitive'
 " get distraction free mode
 Plugin 'junegunn/goyo.vim'
+" get log file highlighting
+Plugin 'mtdl9/vim-log-highlighting'
+" get git changes in gutter
+Plugin 'airblade/vim-gitgutter'
+" show indent guides
+Plugin 'nathanaelkane/vim-indent-guides'
+" enable ripgrep searching from grep
+Plugin 'jremmen/vim-ripgrep'
+"For Snippets
+" Track the engine.
+Plugin 'SirVer/ultisnips'
+" Snippets are separated from the engine. Add this if you want them:
+Plugin 'honza/vim-snippets'
+" For working with yml files
+Plugin 'mrk21/yaml-vim'
+" To give a handy, slimline position file position indictator in statusline
+Plugin 'drzel/vim-line-no-indicator'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 
@@ -68,6 +85,10 @@ syntax enable     " enable syntax highlighting
 tnoremap <Esc> <C-\><C-n>    
 let g:airline_theme='solarized'     " set airline theme to solarized
 let g:airline_solarized_bg='light'  " set it to the light version
+let g:airline#extensions#whitespace#enabled = 0 " airline always flags mixed intent on r files which is annoying so turn this off
+let g:airline_section_x = '%{&filetype}'
+let g:airline_section_y = '%#__accent_bold#%{LineNoIndicator()}%#__restore__#'
+let g:airline_section_z = '%2c'
 set pastetoggle=<F2>     " use F2 to toggle between paste modes
 " just semi-colon for doing stuff, but then double-tap to get a semi-colon
 " (repeat last f or t)
@@ -75,10 +96,42 @@ map ; :
 noremap ;; ;
 set background=light      " use dark background
 colorscheme solarized    " use solarized colorscheme
+let g:indent_guides_auto_colors = 0
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=black
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=black
+let g:indent_guides_guide_size = 1 " get very subtle indent highlights and have it start from starup
+let g:indent_guides_color_change_percent = 1
+let g:indent_guides_enable_on_vim_startup = 1
 nnoremap H gT     " use H to go back in tabs
 nnoremap L gt     " use L to go forward in tabs
 nnoremap <Leader>zz :let &scrolloff=999-&scrolloff<CR> " use leader-zz to focus cursor in the middle of the screen
 set scrolloff=999 		 " by default have cursor in the middle of the screen
+let g:csv_nomap_cr = 1   " prevent csv plugin from remapping control keys
+nnoremap <Leader>b :ls<CR>:b<Space> 
+" allows <Leader>b to accept the number of a buffer afterwards to select that buffer
+nnoremap <Leader>nt :NERDTree<CR>
+" remaps leader nt to opening up NERD tree
+let NERDTreeShowHidden=1 " show hidden files in NERDTRee
+" UltiSnips Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger = "<C-l>"
+let g:UltiSnipsJumpForwardTrigger = "<C-j>"
+let g:UltiSnipsJumpBackwardTrigger = "<C-k>"
+ " Create Blank Newlines and stay in Normal mode
+nnoremap zj o<Esc>k
+nnoremap zk O<Esc>j
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+
+""" git remaps
+nnoremap <Leader>gs :Gstatus<CR>
+nnoremap <Leader>ga :Gwrite<CR>
+nnoremap <Leader>gc :Gcommit<CR>
+nnoremap <Leader>gp :Gpush<CR>
+
+" add yaml stuffs
+au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
 """ VIM ALIASES
 command Projects cd ~/Documents/Projects

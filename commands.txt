@@ -7,3 +7,5 @@ ln -s ~/Dropbox/config-files/skeleton.rmd ~/.vim/templates/skeleton.rmd
 ln -s ~/Dropbox/config-files/skeleton.py ~/.vim/templates/skeleton.py
 ln -s ~/Dropbox/config-files/Rprofile ~/.Rprofile
 ln -s ~/Dropbox/config-files/tmuxconf ~/.tmux.conf
+ln -s ~/Dropbox/config-files/hammerspoon ~/.hammerspoon
+ln -s ~/Dropbox/config-files/karabiner.json ~/.config/karabiner/karabiner.json
