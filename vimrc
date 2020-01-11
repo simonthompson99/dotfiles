@@ -14,8 +14,6 @@ Plugin 'chrisbra/csv.vim'
 " more visable status line
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-" to get nice  tab autocompletion
-Plugin 'ervandew/supertab'
 " handles auto-completing brackets, braces etc.
 Plugin 'jiangmiao/auto-pairs'
 " for changing surrounding quotes, parentheses etc.
@@ -44,11 +42,10 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'nathanaelkane/vim-indent-guides'
 " enable ripgrep searching from grep
 Plugin 'jremmen/vim-ripgrep'
-"For Snippets
-" Track the engine.
-Plugin 'SirVer/ultisnips'
-" Snippets are separated from the engine. Add this if you want them:
-Plugin 'honza/vim-snippets'
+" show linting
+Plugin 'dense-analysis/ale'
+" load language server
+Plugin 'neoclide/coc.nvim', {'branch': 'release'}
 " For working with yml files
 Plugin 'mrk21/yaml-vim'
 " To give a handy, slimline position file position indictator in statusline
@@ -64,6 +61,7 @@ set autoindent    " always set autoindenting on
 set copyindent    " copy the previous indentation on autoindenting
 set number        " always show line numbers
 set shiftwidth=4  " number of spaces to use for autoindenting
+set expandtab     " expand the tab to spaces
 set shiftround    " use multiple of shiftwidth when indenting with '<' and '>'
 set showmatch     " set show matching parenthesis
 set ignorecase    " ignore case when searching
@@ -108,30 +106,108 @@ nnoremap <Leader>zz :let &scrolloff=999-&scrolloff<CR> " use leader-zz to focus 
 set scrolloff=999 		 " by default have cursor in the middle of the screen
 let g:csv_nomap_cr = 1   " prevent csv plugin from remapping control keys
 nnoremap <Leader>b :ls<CR>:b<Space> 
+ " Create Blank Newlines and stay in Normal mode
+nnoremap zj o<Esc>k
+nnoremap zk O<Esc>j
+" add yaml stuffs
+au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+
+" NERDTree Configuration
 " allows <Leader>b to accept the number of a buffer afterwards to select that buffer
 nnoremap <Leader>nt :NERDTree<CR>
 " remaps leader nt to opening up NERD tree
 let NERDTreeShowHidden=1 " show hidden files in NERDTRee
-" UltiSnips Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger = "<C-l>"
-let g:UltiSnipsJumpForwardTrigger = "<C-j>"
-let g:UltiSnipsJumpBackwardTrigger = "<C-k>"
- " Create Blank Newlines and stay in Normal mode
-nnoremap zj o<Esc>k
-nnoremap zk O<Esc>j
 
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
+" COC VIM Configuration
+" use <tab> for trigger completion and navigate to the next complete item
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
 
+inoremap <silent><expr> <Tab>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<Tab>" :
+      \ coc#refresh()
+" Better display for messages
+set cmdheight=2
+" Smaller updatetime for CursorHold & CursorHoldI
+set updatetime=300
+" don't give |ins-completion-menu| messages.
+set shortmess+=c
+" always show signcolumns
+set signcolumn=yes
+
+" Use `[g` and `]g` to navigate diagnostics
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K for show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+"
+" Remap for rename current word
+nmap <leader>rn <Plug>(coc-rename)
+
+" Remap for format selected region
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+
+" ALE Linter configuration
+" set up linters
+let g:ale_fixers = {
+  \ 'python': ['yapf', 'pylint'] ,
+  \ }
+
+" Fugitive configuration
 """ git remaps
 nnoremap <Leader>gs :Gstatus<CR>
 nnoremap <Leader>ga :Gwrite<CR>
 nnoremap <Leader>gc :Gcommit<CR>
 nnoremap <Leader>gp :Gpush<CR>
 
-" add yaml stuffs
-au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
-autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+" Vimcmdline configuration
+" for vimcmdline, have the terminal try and run in venv
+let cmdline_app           = {}
+let cmdline_app['python']   = 'if [ -d "venv" ]; then source venv/bin/activate && ipython --no-autoindent; else ipython --no-autoindent; fi'
+let cmdline_follow_colorscheme = 1 "follow current colorscheme
+
+" Goyo Configuration
+" customise Goyo so that move down line by line
+function! s:goyo_enter()
+  nnoremap j gj
+  nnoremap k gk
+endfunction
+
+function! s:goyo_leave()
+  nunmap j
+  nunmap k
+endfunction
+
+autocmd! User GoyoEnter nested call <SID>goyo_enter()
+autocmd! User GoyoLeave nested call <SID>goyo_leave()
+
+""" VIM-R Configuration
+let R_assign_map = ";"  " get <- with a double-tap on semi-colon
+let R_df_viewer = "wrangleR::rdtv(%s)"  " change the data viewer to be rdtv function in wrangleR
+"to show head of the df under cursor
+nmap <silent> <LocalLeader>h :call RAction("head")<CR>
+"to view with dtv whole of df under cursor
+nmap <silent> <LocalLeader>dv :call RAction("wrangleR::dtv")<CR>
+"to get glimpse of the df
+nmap <silent> <LocalLeader>g :call RAction("dplyr::glimpse")<CR>
+"to get number of rows in df
+nmap <silent> <LocalLeader>nr :call RAction("nrow")<CR>
+let R_rcomment_string = "#-- "          " change what gets added as a comment character
+"enable folding but open unfolded
+let r_syntax_folding = 1
+set nofoldenable
 
 """ VIM ALIASES
 command Projects cd ~/Documents/Projects
@@ -148,36 +224,6 @@ function! s:DiffWithSaved()
   exe "setlocal bt=nofile bh=wipe nobl noswf ro ft=" . filetype
 endfunction
 com! DiffSaved call s:DiffWithSaved()
-
-" customise Goyo so that move down line by line
-function! s:goyo_enter()
-  nnoremap j gj
-  nnoremap k gk
-endfunction
-
-function! s:goyo_leave()
-  nunmap j
-  nunmap k
-endfunction
-
-autocmd! User GoyoEnter nested call <SID>goyo_enter()
-autocmd! User GoyoLeave nested call <SID>goyo_leave()
-
-""" VIM-R COMMANDS
-let R_assign_map = ";"  " get <- with a double-tap on semi-colon
-let R_df_viewer = "wrangleR::rdtv(%s)"  " change the data viewer to be rdtv function in wrangleR
-"to show head of the df under cursor
-nmap <silent> <LocalLeader>h :call RAction("head")<CR>
-"to view with dtv whole of df under cursor
-nmap <silent> <LocalLeader>dv :call RAction("wrangleR::dtv")<CR>
-"to get glimpse of the df
-nmap <silent> <LocalLeader>g :call RAction("dplyr::glimpse")<CR>
-"to get number of rows in df
-nmap <silent> <LocalLeader>nr :call RAction("nrow")<CR>
-let R_rcomment_string = "#-- "          " change what gets added as a comment character
-"enable folding but open unfolded
-let r_syntax_folding = 1
-set nofoldenable
 
 """ VIM TEMPLATES
 "setup templates

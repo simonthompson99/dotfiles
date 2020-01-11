@@ -14,6 +14,12 @@ alias ddf='bash ~/scripts/ddf-connect/ddf_ssh.sh'
 # alias for vim to nvim
 alias vim="nvim"
 
+# alias ctags to use the brew ctags
+alias buildtags="`brew --prefix`/bin/ctags -R --exclude=.git --exclude=venv ."
+
+# alias for ranger
+alias rr='ranger'
+
 # alias to run twosets and quicktab
 alias twosets='python /Users/simonthompson/Documents/Projects/utilities/twosets/twosets.py'
 alias quicktab='python /Users/simonthompson/Documents/Projects/utilities/quicktab/quicktab.py'
