@@ -97,8 +97,8 @@ noremap ;; ;
 set background=light      " use dark background
 colorscheme solarized    " use solarized colorscheme
 let g:indent_guides_auto_colors = 0
-autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=black
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=black
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=white
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=lightgrey
 let g:indent_guides_guide_size = 1 " get very subtle indent highlights and have it start from starup
 let g:indent_guides_color_change_percent = 1
 let g:indent_guides_enable_on_vim_startup = 1
