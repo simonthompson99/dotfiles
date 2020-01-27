@@ -22,7 +22,7 @@ Plugin 'tpope/vim-surround'
 Plugin 'Vimjas/vim-python-pep8-indent'
 " to get hybrid line numbering, relative and absolute
 Plugin 'jeffkreeftmeijer/vim-numbertoggle'
-"for moving between tmux and vim a bit more seamlessly
+" for moving between tmux and vim a bit more seamlessly
 Plugin 'christoomey/vim-tmux-navigator'
 "nerdtree plugin
 Plugin 'scrooloose/nerdtree'
@@ -113,6 +113,15 @@ nnoremap zk O<Esc>j
 au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
+" specify line length defaults
+" https://thisismecoding.com/vim-overlength-highlight/
+hi LineProximity ctermfg=white ctermbg=Gray
+hi LineOverflow  ctermfg=white ctermbg=Red 
+autocmd BufEnter,VimEnter,FileType *.r,*.R,*.py let w:m1=matchadd('LineProximity', '\%<85v.\%>80v', -1)
+autocmd BufEnter,VimEnter,FileType *.r,*.R,*.py let w:m2=matchadd('LineOverflow', '\%>84v.\+', -1)
+autocmd BufEnter,VimEnter,FileType,VimEnter *.r,*.R,*.py autocmd WinEnter *.rb,*.coffee let w:created=1
+autocmd BufEnter,VimEnter,FileType,VimEnter *.r,*.R,*.py let w:created=1
+
 " NERDTree Configuration
 " allows <Leader>b to accept the number of a buffer afterwards to select that buffer
 nnoremap <Leader>nt :NERDTree<CR>
@@ -162,7 +171,8 @@ nmap <leader>f  <Plug>(coc-format-selected)
 " ALE Linter configuration
 " set up linters
 let g:ale_fixers = {
-  \ 'python': ['yapf', 'pylint'] ,
+  "\ 'python': ['yapf', 'pylint'] ,
+  \ 'python': ['pylint'] ,
   \ }
 
 " Fugitive configuration

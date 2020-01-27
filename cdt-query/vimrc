@@ -149,6 +149,12 @@ function! s:DiffWithSaved()
 endfunction
 com! DiffSaved call s:DiffWithSaved()
 
+" Vimcmdline configuration
+" for vimcmdline, have the terminal try and run in venv
+let cmdline_app           = {}
+let cmdline_app['python']   = 'if [ -d "venv" ]; then source venv/bin/activate && ipython --no-autoindent; else ipython --no-autoindent; fi'
+let cmdline_follow_colorscheme = 1 "follow current colorscheme
+
 " customise Goyo so that move down line by line
 function! s:goyo_enter()
   nnoremap j gj
