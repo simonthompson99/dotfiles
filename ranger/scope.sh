@@ -34,10 +34,10 @@ FILE_EXTENSION="${FILE_PATH##*.}"
 FILE_EXTENSION_LOWER=$(echo ${FILE_EXTENSION} | tr '[:upper:]' '[:lower:]')
 
 # Settings
-HIGHLIGHT_SIZE_MAX=262143  # 256KiB
+HIGHLIGHT_SIZE_MAX=2143  # 256KiB
 HIGHLIGHT_TABWIDTH=8
-HIGHLIGHT_STYLE='pablo'
-PYGMENTIZE_STYLE='autumn'
+HIGHLIGHT_STYLE='zenburn'
+PYGMENTIZE_STYLE='friendly'
 
 
 handle_extension() {
@@ -58,12 +58,12 @@ handle_extension() {
             exit 1;;
 
         # PDF
-        #pdf)
-        #    # Preview as text conversion
-        #    pdftotext -l 10 -nopgbrk -q -- "${FILE_PATH}" - | fmt -w ${PV_WIDTH} && exit 5
-        #    mutool draw -F txt -i -- "${FILE_PATH}" 1-10 | fmt -w ${PV_WIDTH} && exit 5
-        #    exiftool "${FILE_PATH}" && exit 5
-        #    exit 1;;
+        pdf)
+            # Preview as text conversion
+            pdftotext -l 10 -nopgbrk -q -- "${FILE_PATH}" - | fmt -w ${PV_WIDTH} && exit 5
+            mutool draw -F txt -i -- "${FILE_PATH}" 1-10 | fmt -w ${PV_WIDTH} && exit 5
+            exiftool "${FILE_PATH}" && exit 5
+            exit 1;;
 
         # BitTorrent
         torrent)

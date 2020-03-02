@@ -65,65 +65,58 @@ setw -g pane-base-index 1
 # renumber the windows rather than keeping original numbers
 set-option -g renumber-windows on
 
-#### COLOUR (Solarized dark)
-
-# default statusbar colors
-set-option -g status-bg black #base02
-set-option -g status-fg yellow #yellow
-set-option -g status-attr default
-
-# default window title colors
-set-window-option -g window-status-fg brightblue #base0
-set-window-option -g window-status-bg default
-set-window-option -g window-status-format "#I:#W "
-
-# active window title colors
-set-window-option -g window-status-current-bg colour9
-set-window-option -g window-status-current-fg white
-set-window-option -g window-status-current-attr bright
-set-window-option -g window-status-current-format "#I:#W#F"
-
-# pane border
-set-option -g pane-border-fg black #base02
-set-option -g pane-active-border-fg brightgreen #base01
-
-# message text
-set-option -g message-bg colour9
-set-option -g message-fg white
-
-# pane number display
-set-option -g display-panes-active-colour blue #blue
-set-option -g display-panes-colour brightred #orange
-
-# clock
-set-window-option -g clock-mode-colour green #green
-
-# bell
-set-window-option -g window-status-bell-style fg=black,bg=red #base02, red
-
-# Status line.
-set -g status-right "#{pane_current_path}"
-set -g status-left "%Y-%m-%d %H:%M  "
-set -g status-left-length 20
+##### COLOUR (Solarized dark)
+#
+## default statusbar colors
+#set-option -g status-bg black #base02
+#set-option -g status-fg yellow #yellow
+#set-option -g status-attr default
+#
+## default window title colors
+#set-window-option -g window-status-fg brightblue #base0
+#set-window-option -g window-status-bg default
+#set-window-option -g window-status-format "#I:#W "
+#
+## active window title colors
+#set-window-option -g window-status-current-bg colour9
+#set-window-option -g window-status-current-fg white
+#set-window-option -g window-status-current-attr bright
+#set-window-option -g window-status-current-format "#I:#W#F"
+#
+## pane border
+#set-option -g pane-border-fg black #base02
+#set-option -g pane-active-border-fg brightgreen #base01
+#
+## message text
+#set-option -g message-bg colour9
+#set-option -g message-fg white
+#
+## pane number display
+#set-option -g display-panes-active-colour blue #blue
+#set-option -g display-panes-colour brightred #orange
+#
+## clock
+#set-window-option -g clock-mode-colour green #green
+#
+## bell
+#set-window-option -g window-status-bell-style fg=black,bg=red #base02, red
+#
+## Status line.
+#set -g status-right "#{pane_current_path}"
+#set -g status-left "%Y-%m-%d %H:%M  "
+#set -g status-left-length 20
  
-# easily reload tmux conf with <prefix> + r
-#unbind r
-#bind r source-file ~/.tmux.conf
-#
-#set-window-option -g allow-rename off
-#
-#set -g pane-border-style fg=colour11
-#set -g pane-active-border-style fg=colour8
-#
-#set -g status-justify right
-#set -g status-right ""
-#set -g status-style "bg=colour0"
-#set -ag status-style "fg=colour7"
-#
-#set -g window-status-current-format "#[fg=colour15]    #W"
-#set -g window-status-format "#[fg=colour8]    #W"
-#
-#set -g status-left-length 100
-#set -g status-left  "#[fg=colour15]#(date +"%H%M") #[fg=colour8]hrs    "
-#set -ag status-left "#[fg=colour15]#(date +"%d/%m")#[fg=colour8] #(date +"%Y")    "
-#set -ag status-left "#[fg=colour7]#(~/scripts/bat -q)#[fg=colour12]"
+## List of plugins
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'tmux-plugins/tmux-sensible'
+set -g @plugin "arcticicestudio/nord-tmux"
+#set -g @plugin 'seebi/tmux-colors-solarized'
+#set -g @colors-solarized 'dark'
+
+# Other examples:
+# set -g @plugin 'github_username/plugin_name'
+# set -g @plugin 'git@github.com/user/plugin'
+# set -g @plugin 'git@bitbucket.com/user/plugin'
+
+# Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
+run -b '~/.tmux/plugins/tpm/tpm'

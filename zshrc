@@ -11,6 +11,22 @@ export ZSH="/Users/simonthompson/.oh-my-zsh"
 #ZSH_THEME="robbyrussell"
 ZSH_THEME=powerlevel10k/powerlevel10k
 
+#ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_bold[white]%} on %{$fg_bold[yellow]%}\xee\x82\xa0 "
+#ZSH_THEME_GIT_PROMPT_SUFFIX="%{$fg_bold[yellow]%}"
+#ZSH_THEME_GIT_PROMPT_DIRTY=" %{$reset_color%}%{$fg_bold[red]%}*%{$reset_color%}"
+#ZSH_THEME_GIT_PROMPT_CLEAN=""
+#
+#conda_env() {
+#    if [ ! -z "$CONDA_PREFIX" ]
+#    then
+#        print -n " %{$fg_bold[white]%}on %{$fg_bold[blue]%}ꓛ ${CONDA_PREFIX##*/}%{$reset_color%}"
+#    fi
+#}
+#
+#PROMPT='
+# %{$fg_bold[green]%}%3c%{$reset_color%}$(git_prompt_info)$(conda_env)
+# %{$fg_bold[blue]%}> %{$reset_color%}'
+
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
@@ -109,4 +125,3 @@ alias -s {py,r,R,rmd,txt,csv,log,md,sh,json,sql}=vim
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
-

@@ -30,6 +30,8 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'jalvesaq/vimcmdline'
 " get solarized theme for vim
 Plugin 'altercation/vim-colors-solarized'
+" get Nord colorscheme
+Plugin 'arcticicestudio/nord-vim'
 " manage git from vim
 Plugin 'tpope/vim-fugitive'
 " get distraction free mode
@@ -50,6 +52,8 @@ Plugin 'neoclide/coc.nvim', {'branch': 'release'}
 Plugin 'mrk21/yaml-vim'
 " To give a handy, slimline position file position indictator in statusline
 Plugin 'drzel/vim-line-no-indicator'
+" To auto-resize windows when you move to them
+"Plugin 'camspiers/lens.vim'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 
@@ -76,13 +80,15 @@ set visualbell           " don't beep
 set noerrorbells         " don't beep
 filetype plugin indent on    " allow to detect filetype and load corresponding plugins
 set autochdir 	  " so that working directory changes to that for file i've opened
-set cursorline    " highlight the current line
+"set cursorline    " highlight the current line
 set linebreak     " to get 'soft linebreak' i.e. wrapping at word boundaries
 syntax enable     " enable syntax highlighting
 " Use ESC to exit insert mode in :term
 tnoremap <Esc> <C-\><C-n>    
-let g:airline_theme='solarized'     " set airline theme to solarized
-let g:airline_solarized_bg='dark'   " set it to the dark version
+let g:airline_powerline_fonts = 1
+"let g:airline_theme='solarized'     " set airline theme to solarized
+let g:airline_theme='nord'     " set airline theme to nord
+"let g:airline_solarized_bg='dark'   " set it to the dark version
 let g:airline#extensions#whitespace#enabled = 0 " airline always flags mixed intent on r files which is annoying so turn this off
 let g:airline_section_x = '%{&filetype}'
 let g:airline_section_y = '%#__accent_bold#%{LineNoIndicator()}%#__restore__#'
@@ -92,20 +98,25 @@ set pastetoggle=<F2>     " use F2 to toggle between paste modes
 " (repeat last f or t)
 map ; :
 noremap ;; ;
-set background=dark      " use dark background
-colorscheme solarized    " use solarized colorscheme
+"set background=dark      " use dark background
+"colorscheme solarized    " use solarized colorscheme
+colorscheme nord    " use nord colorscheme
 let g:indent_guides_auto_colors = 0
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=black
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=black
-let g:indent_guides_guide_size = 1 " get very subtle indent highlights and have it start from starup
-let g:indent_guides_color_change_percent = 1
-let g:indent_guides_enable_on_vim_startup = 1
+"let g:indent_guides_guide_size = 1 " get very subtle indent highlights and have it start from starup
+"let g:indent_guides_color_change_percent = 1
+"let g:indent_guides_enable_on_vim_startup = 1
 nnoremap H gT     " use H to go back in tabs
 nnoremap L gt     " use L to go forward in tabs
 nnoremap <Leader>zz :let &scrolloff=999-&scrolloff<CR> " use leader-zz to focus cursor in the middle of the screen
 set scrolloff=999 		 " by default have cursor in the middle of the screen
 let g:csv_nomap_cr = 1   " prevent csv plugin from remapping control keys
+" use leader b to get list of buffers to choose from, and F7/8 to go up and
+" down buffers
 nnoremap <Leader>b :ls<CR>:b<Space> 
+map <F7> :bprevious<CR>
+map <F8> :bnext<CR>
  " Create Blank Newlines and stay in Normal mode
 nnoremap zj o<Esc>k
 nnoremap zk O<Esc>j
@@ -115,12 +126,12 @@ autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
 " specify line length defaults
 " https://thisismecoding.com/vim-overlength-highlight/
-hi LineProximity ctermfg=white ctermbg=Gray
-hi LineOverflow  ctermfg=white ctermbg=Red 
-autocmd BufEnter,VimEnter,FileType *.r,*.R,*.py let w:m1=matchadd('LineProximity', '\%<85v.\%>80v', -1)
-autocmd BufEnter,VimEnter,FileType *.r,*.R,*.py let w:m2=matchadd('LineOverflow', '\%>84v.\+', -1)
-autocmd BufEnter,VimEnter,FileType,VimEnter *.r,*.R,*.py autocmd WinEnter *.rb,*.coffee let w:created=1
-autocmd BufEnter,VimEnter,FileType,VimEnter *.r,*.R,*.py let w:created=1
+"hi LineProximity ctermfg=white ctermbg=Gray
+"hi LineOverflow  ctermfg=white ctermbg=Red 
+"autocmd BufEnter,VimEnter,FileType *.r,*.R,*.py let w:m1=matchadd('LineProximity', '\%<85v.\%>80v', -1)
+"autocmd BufEnter,VimEnter,FileType *.r,*.R,*.py let w:m2=matchadd('LineOverflow', '\%>84v.\+', -1)
+"autocmd BufEnter,VimEnter,FileType,VimEnter *.r,*.R,*.py autocmd WinEnter *.rb,*.coffee let w:created=1
+"autocmd BufEnter,VimEnter,FileType,VimEnter *.r,*.R,*.py let w:created=1
 
 " NERDTree Configuration
 " allows <Leader>b to accept the number of a buffer afterwards to select that buffer

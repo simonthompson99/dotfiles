@@ -81,7 +81,7 @@ function indx () {
 	echo "    +#+     +#+  +#+#+# +#+    +#+  +#+  +#+  ";
 	echo "    #+#     #+#   #+#+# #+#    #+# #+#    #+# ";
 	echo "########### ###    #### #########  ###    ### ";
-	colorssh -L 5441:10.1.24.39:5433 sthompson@10.1.24.38
+	colorssh -L 5441:10.1.24.39:5432 sthompson@10.1.24.38
 }
 
 #-- function to make scp to query box easier
