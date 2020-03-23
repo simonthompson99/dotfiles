@@ -169,6 +169,12 @@ endfunction
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
+" for vimcmdline, have the terminal try and run in venv
+let cmdline_app           = {}
+let cmdline_app['python']   = 'if [ -d "venv" ]; then source venv/bin/activate && ipython --no-autoindent; else ipython --no-autoindent; fi'
+let cmdline_app['r'] = 'R'
+let cmdline_follow_colorscheme = 1 "follow current colorscheme
+
 """ VIM-R COMMANDS
 let R_assign_map = ";"  " get <- with a double-tap on semi-colon
 let R_df_viewer = "wrangleR::rdtv(%s)"  " change the data viewer to be rdtv function in wrangleR

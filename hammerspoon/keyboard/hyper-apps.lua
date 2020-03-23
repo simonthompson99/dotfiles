@@ -12,7 +12,7 @@ return {
   { 'x', 'Microsoft Excel' },              -- "x" for "eXcel"
   { 'f', 'Finder' },            -- "F" for "Finder"
   { 'l', 'Calendar' },            -- "L" for "caLendar"
-  { 'm', 'Mail' },            -- "M" for "Mail"
+  { 'm', 'Microsoft Teams' },            -- "M" for "Microsoft"
   { 's', 'Slack' },             -- "S" for "Slack"
   { 'w', 'WorkFlowy' },             -- "W" for "WorkFlowy"
   { 't', 'iTerm' },             -- "T" for "Terminal"

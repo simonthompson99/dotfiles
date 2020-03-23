@@ -5,7 +5,7 @@ alias shproj='cd ~/Documents/Projects/short-projects'
 # go to scratch folder
 alias scratch='cd ~/scratch'
 
-# keep getting into trouble calling script by mistake
+# keep getting into trouble calling script by mistake when should be calling Rscript
 alias script='echo "you did NOT want to do that\n"'
 
 # run the ddf connection script
@@ -20,6 +20,9 @@ alias buildtags="`brew --prefix`/bin/ctags -R --exclude=.git --exclude=venv ."
 # alias for ranger
 alias rr='ranger'
 
+# alias for iPython
+alias ip='iPython'
+
 # alias to run twosets and quicktab
 alias twosets='python /Users/simonthompson/Documents/Projects/utilities/twosets/twosets.py'
 alias quicktab='python /Users/simonthompson/Documents/Projects/utilities/quicktab/quicktab.py'
@@ -28,11 +31,12 @@ alias mquicktab='python /Users/simonthompson/Documents/Projects/utilities/mquick
 # Virtualenv aliases and functions
 alias vcreate='virtualenv venv -p python3 --no-site-packages'
 function vact () {
-	source venv/bin/activate && tmux select-pane -P 'fg=blue'
+	source venv/bin/activate
+	# && tmux select-pane -P 'fg=blue'
 }
 function vdeact () {
 	deactivate
-	tmux select-pane -P 'fg=default'
+	#tmux select-pane -P 'fg=default'
 }
 
 ## aliases for connecting to cdt server stuff

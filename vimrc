@@ -29,7 +29,7 @@ Plugin 'scrooloose/nerdtree'
 "send lines to a terminal
 Plugin 'jalvesaq/vimcmdline'
 " get solarized theme for vim
-Plugin 'altercation/vim-colors-solarized'
+"Plugin 'altercation/vim-colors-solarized'
 " get Nord colorscheme
 Plugin 'arcticicestudio/nord-vim'
 " manage git from vim
@@ -52,8 +52,10 @@ Plugin 'neoclide/coc.nvim', {'branch': 'release'}
 Plugin 'mrk21/yaml-vim'
 " To give a handy, slimline position file position indictator in statusline
 Plugin 'drzel/vim-line-no-indicator'
-" To auto-resize windows when you move to them
-"Plugin 'camspiers/lens.vim'
+" to manage snippers
+"Plugin 'SirVer/ultisnips'
+" Snippets are separated from the engine. Add this if you want them:
+"Plugin 'honza/vim-snippets'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 
@@ -86,7 +88,7 @@ syntax enable     " enable syntax highlighting
 " Use ESC to exit insert mode in :term
 tnoremap <Esc> <C-\><C-n>    
 let g:airline_powerline_fonts = 1
-"let g:airline_theme='solarized'     " set airline theme to solarized
+let g:airline_theme='solarized'     " set airline theme to solarized
 let g:airline_theme='nord'     " set airline theme to nord
 "let g:airline_solarized_bg='dark'   " set it to the dark version
 let g:airline#extensions#whitespace#enabled = 0 " airline always flags mixed intent on r files which is annoying so turn this off
@@ -193,10 +195,10 @@ nnoremap <Leader>ga :Gwrite<CR>
 nnoremap <Leader>gc :Gcommit<CR>
 nnoremap <Leader>gp :Gpush<CR>
 
-" Vimcmdline configuration
 " for vimcmdline, have the terminal try and run in venv
 let cmdline_app           = {}
 let cmdline_app['python']   = 'if [ -d "venv" ]; then source venv/bin/activate && ipython --no-autoindent; else ipython --no-autoindent; fi'
+let cmdline_app['r'] = 'R'
 let cmdline_follow_colorscheme = 1 "follow current colorscheme
 
 " Goyo Configuration
@@ -225,7 +227,7 @@ nmap <silent> <LocalLeader>dv :call RAction("wrangleR::dtv")<CR>
 nmap <silent> <LocalLeader>g :call RAction("dplyr::glimpse")<CR>
 "to get number of rows in df
 nmap <silent> <LocalLeader>nr :call RAction("nrow")<CR>
-let R_rcomment_string = "#-- "          " change what gets added as a comment character
+let R_rcomment_string = "#--"          " change what gets added as a comment character
 "enable folding but open unfolded
 let r_syntax_folding = 1
 set nofoldenable
