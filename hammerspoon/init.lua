@@ -21,6 +21,9 @@ if caffeine then
     setCaffeineDisplay(hs.caffeinate.get("displayIdle"))
 end
 
+-- hs.loadSpoon("MicMute")
+-- spoon.MicMute:bindHotkeys({toggle = {{"cmd"}, "m"}}, 0.75)
+
 --local hyper = {"ctrl", "alt", "cmd"}
 --
 --hs.loadSpoon("MiroWindowsManager")

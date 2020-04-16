@@ -8,7 +8,7 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 " to interact with R
-Plugin 'jalvesaq/Nvim-R'
+"Plugin 'jalvesaq/Nvim-R'
 " to view csv files nicely
 Plugin 'chrisbra/csv.vim'
 " more visable status line
@@ -25,9 +25,10 @@ Plugin 'jeffkreeftmeijer/vim-numbertoggle'
 " for moving between tmux and vim a bit more seamlessly
 Plugin 'christoomey/vim-tmux-navigator'
 "nerdtree plugin
-Plugin 'scrooloose/nerdtree'
+"Plugin 'scrooloose/nerdtree'
 "send lines to a terminal
-Plugin 'jalvesaq/vimcmdline'
+"Plugin 'jalvesaq/vimcmdline'
+Plugin 'kassio/neoterm'
 " get solarized theme for vim
 "Plugin 'altercation/vim-colors-solarized'
 " get Nord colorscheme
@@ -52,7 +53,7 @@ Plugin 'neoclide/coc.nvim', {'branch': 'release'}
 Plugin 'mrk21/yaml-vim'
 " To give a handy, slimline position file position indictator in statusline
 Plugin 'drzel/vim-line-no-indicator'
-" to manage snippers
+"to manage snippers
 "Plugin 'SirVer/ultisnips'
 " Snippets are separated from the engine. Add this if you want them:
 "Plugin 'honza/vim-snippets'
@@ -60,7 +61,7 @@ Plugin 'drzel/vim-line-no-indicator'
 call vundle#end()            " required
 
 """ VIM BEHAVIOUR
-let maplocalleader="," " change the localleader from \ to ,
+let mapleader="," " change the localleader from \ to ,
 set tabstop=4     " a tab is four spaces
 set backspace=indent,eol,start " allow backspacing over everything in insert mode
 set autoindent    " always set autoindenting on
@@ -137,9 +138,10 @@ autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
 " NERDTree Configuration
 " allows <Leader>b to accept the number of a buffer afterwards to select that buffer
-nnoremap <Leader>nt :NERDTree<CR>
+"nnoremap <Leader>nt :NERDTree<CR>
 " remaps leader nt to opening up NERD tree
-let NERDTreeShowHidden=1 " show hidden files in NERDTRee
+"let NERDTreeShowHidden=1 " show hidden files in NERDTRee
+nnoremap <leader>e :CocCommand explorer<CR>
 
 " COC VIM Configuration
 " use <tab> for trigger completion and navigate to the next complete item
@@ -196,10 +198,10 @@ nnoremap <Leader>gc :Gcommit<CR>
 nnoremap <Leader>gp :Gpush<CR>
 
 " for vimcmdline, have the terminal try and run in venv
-let cmdline_app           = {}
-let cmdline_app['python']   = 'if [ -d "venv" ]; then source venv/bin/activate && ipython --no-autoindent; else ipython --no-autoindent; fi'
-let cmdline_app['r'] = 'R'
-let cmdline_follow_colorscheme = 1 "follow current colorscheme
+"let cmdline_app           = {}
+"let cmdline_app['python']   = 'if [ -d "venv" ]; then source venv/bin/activate && ipython --no-autoindent; else ipython --no-autoindent; fi'
+"let cmdline_app['r'] = 'R'
+"let cmdline_follow_colorscheme = 1 "follow current colorscheme
 
 " Goyo Configuration
 " customise Goyo so that move down line by line
@@ -217,22 +219,32 @@ autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
 """ VIM-R Configuration
-let R_assign_map = ";"  " get <- with a double-tap on semi-colon
-let R_df_viewer = "wrangleR::rdtv(%s)"  " change the data viewer to be rdtv function in wrangleR
-"to show head of the df under cursor
-nmap <silent> <LocalLeader>h :call RAction("head")<CR>
-"to view with dtv whole of df under cursor
-nmap <silent> <LocalLeader>dv :call RAction("wrangleR::dtv")<CR>
-"to get glimpse of the df
-nmap <silent> <LocalLeader>g :call RAction("dplyr::glimpse")<CR>
-"to get number of rows in df
-nmap <silent> <LocalLeader>nr :call RAction("nrow")<CR>
-let R_rcomment_string = "#--"          " change what gets added as a comment character
+"let R_assign_map = ";"  " get <- with a double-tap on semi-colon
+"let R_df_viewer = "wrangleR::rdtv(%s)"  " change the data viewer to be rdtv function in wrangleR
+""to show head of the df under cursor
+"nmap <silent> <LocalLeader>h :call RAction("head")<CR>
+""to view with dtv whole of df under cursor
+"nmap <silent> <LocalLeader>dv :call RAction("wrangleR::dtv")<CR>
+""to get glimpse of the df
+"nmap <silent> <LocalLeader>g :call RAction("dplyr::glimpse")<CR>
+""to get number of rows in df
+"nmap <silent> <LocalLeader>nr :call RAction("nrow")<CR>
+"let R_rcomment_string = "#--"          " change what gets added as a comment character
 "enable folding but open unfolded
 let r_syntax_folding = 1
 set nofoldenable
+let g:neoterm_default_mod='belowright' " open terminal in bottom split
+let g:neoterm_size=16 " terminal split size
+let g:neoterm_autoscroll=1 " scroll to the bottom when running a command
+let g:neoterm_repl_r='radian'
+nnoremap <leader>s :Tnew<cr> " open new terminal
+nnoremap <leader>q :Tclose!<cr> " close terminal
+nnoremap <leader><cr> :TREPLSendLine<cr>j " send current line and move down
+vnoremap <leader><cr> :TREPLSendSelection<cr> " send current selection
+nnoremap <leader>pp vap:TREPLSendSelection<cr>} " send current paragraph and move down
+nnoremap <leader>aa ggVG:TREPLSendSelection<cr>gg " send whole file
 
-""" VIM ALIASES
+"" VIM ALIASES
 command Projects cd ~/Documents/Projects
 command Scratch cd ~/scratch
 
