@@ -21,6 +21,8 @@ if caffeine then
     setCaffeineDisplay(hs.caffeinate.get("displayIdle"))
 end
 
+--hs.loadSpoon("Pomodoro")
+
 -- hs.loadSpoon("MicMute")
 -- spoon.MicMute:bindHotkeys({toggle = {{"cmd"}, "m"}}, 0.75)
 

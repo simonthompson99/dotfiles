@@ -56,12 +56,12 @@ Plugin 'drzel/vim-line-no-indicator'
 "to manage snippers
 "Plugin 'SirVer/ultisnips'
 " Snippets are separated from the engine. Add this if you want them:
-"Plugin 'honza/vim-snippets'
+Plugin 'honza/vim-snippets'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 
 """ VIM BEHAVIOUR
-let mapleader="," " change the localleader from \ to ,
+"let mapleader="\" " change the localleader from \ to ,
 set tabstop=4     " a tab is four spaces
 set backspace=indent,eol,start " allow backspacing over everything in insert mode
 set autoindent    " always set autoindenting on
@@ -145,15 +145,24 @@ nnoremap <leader>e :CocCommand explorer<CR>
 
 " COC VIM Configuration
 " use <tab> for trigger completion and navigate to the next complete item
+" Use tab for trigger completion with characters ahead and navigate.
+" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
 function! s:check_back_space() abort
   let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~ '\s'
+  return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
-
-inoremap <silent><expr> <Tab>
+inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<Tab>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+" Navigate snippet placeholders using tab
+let g:coc_snippet_next = '<Tab>'
+let g:coc_snippet_prev = '<S-Tab>'
+
+" Use enter to accept snippet expansion
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<CR>"
 " Better display for messages
 set cmdheight=2
 " Smaller updatetime for CursorHold & CursorHoldI
