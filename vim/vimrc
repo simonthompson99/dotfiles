@@ -49,6 +49,10 @@ Plugin 'jremmen/vim-ripgrep'
 Plugin 'dense-analysis/ale'
 " load language server
 Plugin 'neoclide/coc.nvim', {'branch': 'release'}
+" for syntax folding of Python
+Plugin 'tmhedberg/SimpylFold'
+" indent selection
+Plugin 'michaeljsmith/vim-indent-object'
 " For working with yml files
 Plugin 'mrk21/yaml-vim'
 " To give a handy, slimline position file position indictator in statusline
@@ -57,11 +61,19 @@ Plugin 'drzel/vim-line-no-indicator'
 "Plugin 'SirVer/ultisnips'
 " Snippets are separated from the engine. Add this if you want them:
 Plugin 'honza/vim-snippets'
+" Commentary plugin
+Plugin 'tpope/vim-commentary'
+" for JIRA integration
+Plugin 'n0v1c3/vira'
+" for rope vim refactoring
+Plugin 'python-rope/ropevim'
+" extend netrw a bit more
+Plugin 'tpope/vim-vinegar'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 
 """ VIM BEHAVIOUR
-"let mapleader="\" " change the localleader from \ to ,
+let mapleader=" " " change the localleader from \ to ,
 set tabstop=4     " a tab is four spaces
 set backspace=indent,eol,start " allow backspacing over everything in insert mode
 set autoindent    " always set autoindenting on
@@ -74,15 +86,19 @@ set showmatch     " set show matching parenthesis
 set ignorecase    " ignore case when searching
 set smarttab      " insert tabs on the start of a line according to shiftwidth, not tabstop
 set hlsearch      " highlight search terms
+nnoremap <Leader>n :noh<CR>
+" leader n will remove hightlights
 set incsearch     " show search matches as you type
 set history=1000         " remember more commands and search history
 set undolevels=1000      " use many muchos levels of undo
-set wildignore=*.swp,*.bak,*.pyc,*.class
 set title                " change the terminal's title
 set visualbell           " don't beep
 set noerrorbells         " don't beep
 filetype plugin indent on    " allow to detect filetype and load corresponding plugins
-set autochdir 	  " so that working directory changes to that for file i've opened
+"set autochdir 	  " so that working directory changes to that for file i've opened
+set wildmenu " have a menu for file matches
+set path+=** " include subfolders in file finding
+set wildignore=*.swp,*.bak,*.pyc,*.class
 "set cursorline    " highlight the current line
 set linebreak     " to get 'soft linebreak' i.e. wrapping at word boundaries
 syntax enable     " enable syntax highlighting
@@ -118,8 +134,8 @@ let g:csv_nomap_cr = 1   " prevent csv plugin from remapping control keys
 " use leader b to get list of buffers to choose from, and F7/8 to go up and
 " down buffers
 nnoremap <Leader>b :ls<CR>:b<Space> 
-map <F7> :bprevious<CR>
-map <F8> :bnext<CR>
+nnoremap <Leader>hh :bprevious<CR>
+nnoremap <Leader>ll :bnext<CR>
  " Create Blank Newlines and stay in Normal mode
 nnoremap zj o<Esc>k
 nnoremap zk O<Esc>j
@@ -135,13 +151,22 @@ autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 "autocmd BufEnter,VimEnter,FileType *.r,*.R,*.py let w:m2=matchadd('LineOverflow', '\%>84v.\+', -1)
 "autocmd BufEnter,VimEnter,FileType,VimEnter *.r,*.R,*.py autocmd WinEnter *.rb,*.coffee let w:created=1
 "autocmd BufEnter,VimEnter,FileType,VimEnter *.r,*.R,*.py let w:created=1
+"
+" ripgrep remaps and let it derive root (use cwd)
+nnoremap <Leader>ps :Rg<SPACE>
+let g:rg_derive_root='true'
+
+" remaps for the quickfix list navigation
+nmap <leader>qn :cn<CR>
+nmap <leader>qp :cp<CR>
 
 " NERDTree Configuration
 " allows <Leader>b to accept the number of a buffer afterwards to select that buffer
 "nnoremap <Leader>nt :NERDTree<CR>
 " remaps leader nt to opening up NERD tree
 "let NERDTreeShowHidden=1 " show hidden files in NERDTRee
-nnoremap <leader>e :CocCommand explorer<CR>
+" nnoremap <leader>ex :CocCommand explorer<CR>
+nnoremap <leader>ex :Explore<CR>
 
 " COC VIM Configuration
 " use <tab> for trigger completion and navigate to the next complete item
@@ -172,25 +197,28 @@ set shortmess+=c
 " always show signcolumns
 set signcolumn=yes
 
-" Use `[g` and `]g` to navigate diagnostics
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
+" Use ep error-prev and en error-next to navigate diagnositics
+nmap <leader>ep <Plug>(coc-diagnostic-prev)
+nmap <leader>en <Plug>(coc-diagnostic-next)
 
-" Remap keys for gotos
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
+" Remap keys for gotos, 'major mode' commands 
+nmap <leader>md <Plug>(coc-definition)
+nmap <leader>mt <Plug>(coc-type-definition)
+nmap <leader>mi <Plug>(coc-implementation)
+nmap <leader>mr <Plug>(coc-references)
 
-" Use K for show documentation in preview window
-nnoremap <silent> K :call <SID>show_documentation()<CR>
+" Use ms for show documentation in preview window
+nnoremap <leader>ms :call <SID>show_documentation()<CR>
 "
 " Remap for rename current word
 nmap <leader>rn <Plug>(coc-rename)
 
 " Remap for format selected region
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
+xmap <leader>fm  <Plug>(coc-format-selected)
+nmap <leader>fm  <Plug>(coc-format-selected)
+
+" set location for neovim python 3
+let g:python3_host_prog = "/Users/simonthompson/Documents/Projects/vim-venv/venv/bin/python3.7"
 
 " ALE Linter configuration
 " set up linters
@@ -203,6 +231,7 @@ let g:ale_fixers = {
 """ git remaps
 nnoremap <Leader>gs :Gstatus<CR>
 nnoremap <Leader>ga :Gwrite<CR>
+nnoremap <Leader>gd :Gdiffsplit<CR>
 nnoremap <Leader>gc :Gcommit<CR>
 nnoremap <Leader>gp :Gpush<CR>
 
@@ -250,8 +279,9 @@ nnoremap <leader>s :Tnew<cr> " open new terminal
 nnoremap <leader>q :Tclose!<cr> " close terminal
 nnoremap <leader><cr> :TREPLSendLine<cr>j " send current line and move down
 vnoremap <leader><cr> :TREPLSendSelection<cr> " send current selection
-nnoremap <leader>pp vap:TREPLSendSelection<cr>} " send current paragraph and move down
+nnoremap <leader>pp vip:TREPLSendSelection<cr>} " send current paragraph and move down
 nnoremap <leader>aa ggVG:TREPLSendSelection<cr>gg " send whole file
+
 
 "" VIM ALIASES
 command Projects cd ~/Documents/Projects

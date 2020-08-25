@@ -6,9 +6,9 @@ hs.application.enableSpotlightForNameSearches(true)
 local caffeine = hs.menubar.new()
 function setCaffeineDisplay(state)
     if state then
-        caffeine:setTitle("A")
+        caffeine:setTitle("🌕")
     else
-        caffeine:setTitle("S")
+        caffeine:setTitle("🌑")
     end
 end
 

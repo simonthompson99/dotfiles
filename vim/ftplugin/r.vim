@@ -6,6 +6,6 @@ nnoremap <leader>st :T dplyr::glimpse(<C-R><C-W>)<cr> " str on word
 nnoremap <leader>nr :T nrow(<C-R><C-W>)<cr> " nrow on word
 
 " map semicolon to arrow, double tap gives a semicolon
-inoremap ; <space><-<space>
+inoremap ; <space><-
 inoremap ;; ;
 
