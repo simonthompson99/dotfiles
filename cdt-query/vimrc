@@ -46,7 +46,7 @@ Plugin 'jremmen/vim-ripgrep'
 " show linting
 Plugin 'dense-analysis/ale'
 " load language server
-Plugin 'neoclide/coc.nvim', {'branch': 'release'}
+"Plugin 'neoclide/coc.nvim', {'branch': 'release'}
 " for syntax folding of Python
 Plugin 'tmhedberg/SimpylFold'
 " indent selection
@@ -162,8 +162,8 @@ inoremap <silent><expr> <TAB>
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 " Navigate snippet placeholders using tab
-let g:coc_snippet_next = '<Tab>'
-let g:coc_snippet_prev = '<S-Tab>'
+"let g:coc_snippet_next = '<Tab>'
+"let g:coc_snippet_prev = '<S-Tab>'
 
 " Use enter to accept snippet expansion
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<CR>"
@@ -177,24 +177,24 @@ set shortmess+=c
 set signcolumn=yes
 
 " Use ep error-prev and en error-next to navigate diagnositics
-nmap <leader>ep <Plug>(coc-diagnostic-prev)
-nmap <leader>en <Plug>(coc-diagnostic-next)
-
-" Remap keys for gotos, 'major mode' commands 
-nmap <leader>md <Plug>(coc-definition)
-nmap <leader>mt <Plug>(coc-type-definition)
-nmap <leader>mi <Plug>(coc-implementation)
-nmap <leader>mr <Plug>(coc-references)
-
-" Use ms for show documentation in preview window
-nnoremap <leader>ms :call <SID>show_documentation()<CR>
+"nmap <leader>ep <Plug>(coc-diagnostic-prev)
+"nmap <leader>en <Plug>(coc-diagnostic-next)
 "
-" Remap for rename current word
-nmap <leader>rn <Plug>(coc-rename)
-
-" Remap for format selected region
-xmap <leader>fm  <Plug>(coc-format-selected)
-nmap <leader>fm  <Plug>(coc-format-selected)
+"" Remap keys for gotos, 'major mode' commands 
+"nmap <leader>md <Plug>(coc-definition)
+"nmap <leader>mt <Plug>(coc-type-definition)
+"nmap <leader>mi <Plug>(coc-implementation)
+"nmap <leader>mr <Plug>(coc-references)
+"
+"" Use ms for show documentation in preview window
+"nnoremap <leader>ms :call <SID>show_documentation()<CR>
+""
+"" Remap for rename current word
+"nmap <leader>rn <Plug>(coc-rename)
+"
+"" Remap for format selected region
+"xmap <leader>fm  <Plug>(coc-format-selected)
+"nmap <leader>fm  <Plug>(coc-format-selected)
 
 " set location for neovim python 3
 let g:python3_host_prog = "/home/sthompson/vim-venv/venv/bin/python3.7"
