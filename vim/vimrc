@@ -166,7 +166,7 @@ nmap <leader>qp :cp<CR>
 " remaps leader nt to opening up NERD tree
 "let NERDTreeShowHidden=1 " show hidden files in NERDTRee
 " nnoremap <leader>ex :CocCommand explorer<CR>
-nnoremap <leader>ex :Explore<CR>
+nnoremap <leader>ex :45vs +Explore<CR>
 
 " COC VIM Configuration
 " use <tab> for trigger completion and navigate to the next complete item

@@ -145,7 +145,7 @@ nmap <leader>qn :cn<CR>
 nmap <leader>qp :cp<CR>
 
 " open up netrw window
-nnoremap <leader>ex :Explore<CR>
+nnoremap <leader>ex :45vs +Explore<CR>
 
 " COC VIM Configuration
 " use <tab> for trigger completion and navigate to the next complete item
