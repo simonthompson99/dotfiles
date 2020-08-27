@@ -70,7 +70,8 @@ Plugin 'tpope/vim-vinegar'
 call vundle#end()            " required
 
 """ VIM BEHAVIOUR
-let maplleader=" " " change the localleader from \ to ,
+nnoremap <Space> <Nop> "unmap space from any other comman"
+map <Space> <Leader> "map space to leader
 set tabstop=4     " a tab is four spaces
 set backspace=indent,eol,start " allow backspacing over everything in insert mode
 set autoindent    " always set autoindenting on
