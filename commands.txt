@@ -9,3 +9,4 @@ ln -fs ~/Dropbox/config-files/vim/ftplugin ~/.local/share/nvim/site/ftplugin
 ln -fs ~/Dropbox/config-files/r/radian_profile ~/.radian_profile
 ln -fs ~/Dropbox/config-files/r/Rprofile ~/.Rprofile
 ln -fs ~/Dropbox/config-files/r/Renviron ~/.Renviron
+ln -fs ~/Dropbox/config-files/ssh-config.txt ~/.ssh/config
