@@ -1,6 +1,7 @@
 # go to my projects folder
 alias proj='cd ~/Documents/Projects'
 alias shproj='cd ~/Documents/Projects/short-projects'
+alias utils='cd ~/Documents/Utilities'
 
 # go to scratch folder
 alias scratch='cd ~/scratch'
@@ -27,9 +28,9 @@ alias rr='ranger'
 alias ip='iPython'
 
 # alias to run twosets and quicktab
-alias twosets='python /Users/simonthompson/Documents/Projects/utilities/twosets/twosets.py'
-alias quicktab='python /Users/simonthompson/Documents/Projects/utilities/quicktab/quicktab.py'
-alias mquicktab='python /Users/simonthompson/Documents/Projects/utilities/mquicktab/mquicktab.py'
+alias twosets='python /Users/simonthompson/Documents/Utilities/mini_utilities/twosets/twosets.py'
+alias quicktab='python /Users/simonthompson/Documents/Utilities/mini_utilities/quicktab/quicktab.py'
+alias mquicktab='python /Users/simonthompson/Documents/Utilities/mini_utilities/mquicktab/mquicktab.py'
 
 # Virtualenv aliases and functions
 alias vcreate='virtualenv venv -p python3'
