@@ -1,0 +1,24 @@
+### Genomics start ###
+IdentityFile ~/.ssh/id_rsa
+TCPKeepAlive yes
+ServerAliveInterval 30
+ForwardAgent yes
+StrictHostKeyChecking no
+
+Host sftp
+    User sthompson
+    HostName gmc.genomicsengland.nhs.uk
+
+Host indx_dep
+    User cdt_deploy
+    HostName 10.1.24.38
+
+Host indx
+    User sthompson
+    HostName 10.1.24.38
+
+#Host 10.1.24.*
+#    User sthompson
+#    StrictHostKeyChecking no
+#    UserKnownHostsFile=/dev/null
+#    ProxyCommand ssh -W %h:%p sthompson@10.3.0.50
