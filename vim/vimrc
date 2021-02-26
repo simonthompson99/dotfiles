@@ -73,6 +73,7 @@ Plugin 'tpope/vim-vinegar'
 call vundle#end()            " required
 
 """ VIM BEHAVIOUR
+set hidden        " allow unsaved buffers to be hidden
 let mapleader=" " " change the localleader from \ to ,
 set tabstop=4     " a tab is four spaces
 set backspace=indent,eol,start " allow backspacing over everything in insert mode
@@ -183,8 +184,8 @@ inoremap <silent><expr> <TAB>
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 " Navigate snippet placeholders using tab
-let g:coc_snippet_next = '<Tab>'
-let g:coc_snippet_prev = '<S-Tab>'
+" let g:coc_snippet_next = '<Tab>'
+" let g:coc_snippet_prev = '<S-Tab>'
 
 " Use enter to accept snippet expansion
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<CR>"
@@ -218,7 +219,8 @@ xmap <leader>fm  <Plug>(coc-format-selected)
 nmap <leader>fm  <Plug>(coc-format-selected)
 
 " set location for neovim python 3
-let g:python3_host_prog = "/Users/simonthompson/Documents/Projects/vim-venv/venv/bin/python3.7"
+let g:python3_host_prog="~/venv/neovim/bin/python"
+"let g:python3_host_prog = "/Users/simonthompson/Documents/Projects/vim-venv/venv/bin/python3.7"
 
 " ALE Linter configuration
 " set up linters
