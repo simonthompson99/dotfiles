@@ -4,7 +4,7 @@
     "python.pythonPath": "python",
     "python.venvPath": "~/venv/",
     // jedi
-    "python.jediPath": "~/venv/jedi/lib/python3.8/site-packages/",
+    "python.jediPath": "~/venv/jedi/lib/python3.7/site-packages/",
     "python.jediEnabled": true,
     "suggest.timeout": 5000,
     //linting
