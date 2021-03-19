@@ -2,75 +2,75 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 
 """ PLUGINS
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
+call plug#begin('~/.local/share/nvim/plugged')
 " to interact with R
 "Plugin 'jalvesaq/Nvim-R'
 " to view csv files nicely
-Plugin 'chrisbra/csv.vim'
+Plug 'chrisbra/csv.vim'
 " more visable status line
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 " handles auto-completing brackets, braces etc.
-Plugin 'jiangmiao/auto-pairs'
+Plug 'jiangmiao/auto-pairs'
 " for changing surrounding quotes, parentheses etc.
-Plugin 'tpope/vim-surround'
+Plug 'tpope/vim-surround'
 " for nice python indentation
-Plugin 'Vimjas/vim-python-pep8-indent'
+Plug 'Vimjas/vim-python-pep8-indent'
 " to get hybrid line numbering, relative and absolute
-Plugin 'jeffkreeftmeijer/vim-numbertoggle'
+Plug 'jeffkreeftmeijer/vim-numbertoggle'
 " for moving between tmux and vim a bit more seamlessly
-Plugin 'christoomey/vim-tmux-navigator'
+Plug 'christoomey/vim-tmux-navigator'
 "nerdtree plugin
 "Plugin 'scrooloose/nerdtree'
 "send lines to a terminal
 "Plugin 'jalvesaq/vimcmdline'
-Plugin 'kassio/neoterm'
+Plug 'kassio/neoterm'
 " get solarized theme for vim
 "Plugin 'altercation/vim-colors-solarized'
 " get Nord colorscheme
-Plugin 'arcticicestudio/nord-vim'
+Plug 'arcticicestudio/nord-vim'
 " manage git from vim
-Plugin 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive'
 " get distraction free mode
-Plugin 'junegunn/goyo.vim'
+Plug 'junegunn/goyo.vim'
 " get log file highlighting
-Plugin 'mtdl9/vim-log-highlighting'
+Plug 'mtdl9/vim-log-highlighting'
 " get git changes in gutter
-Plugin 'airblade/vim-gitgutter'
+Plug 'airblade/vim-gitgutter'
 " show indent guides
-Plugin 'nathanaelkane/vim-indent-guides'
+Plug 'nathanaelkane/vim-indent-guides'
 " enable ripgrep searching from grep
-Plugin 'jremmen/vim-ripgrep'
+Plug 'jremmen/vim-ripgrep'
 " show linting
-Plugin 'dense-analysis/ale'
+Plug 'dense-analysis/ale'
 " load language server
-Plugin 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'fannheyward/coc-pyright', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-tabnine', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-yaml', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-r-lsp', {'do': 'yarn install --frozen-lockfile'}
 " for syntax folding of Python
-Plugin 'tmhedberg/SimpylFold'
+Plug 'tmhedberg/SimpylFold'
 " indent selection
-Plugin 'michaeljsmith/vim-indent-object'
+Plug 'michaeljsmith/vim-indent-object'
 " For working with yml files
-Plugin 'mrk21/yaml-vim'
+Plug 'mrk21/yaml-vim'
 " To give a handy, slimline position file position indictator in statusline
-Plugin 'drzel/vim-line-no-indicator'
+Plug 'drzel/vim-line-no-indicator'
 "to manage snippers
 "Plugin 'SirVer/ultisnips'
 " Snippets are separated from the engine. Add this if you want them:
-Plugin 'honza/vim-snippets'
+Plug 'honza/vim-snippets'
 " Commentary plugin
-Plugin 'tpope/vim-commentary'
+Plug 'tpope/vim-commentary'
 " for JIRA integration
-Plugin 'n0v1c3/vira'
+Plug 'n0v1c3/vira'
 " for rope vim refactoring
-Plugin 'python-rope/ropevim'
+Plug 'python-rope/ropevim'
 " extend netrw a bit more
-Plugin 'tpope/vim-vinegar'
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
+Plug 'tpope/vim-vinegar'
+call plug#end()
 
 """ VIM BEHAVIOUR
 set hidden        " allow unsaved buffers to be hidden
