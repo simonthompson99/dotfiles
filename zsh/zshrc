@@ -88,6 +88,7 @@ DISABLE_AUTO_TITLE="true"
 plugins=(
 git
 vi-mode
+tmux
 )
 
 source $ZSH/oh-my-zsh.sh
