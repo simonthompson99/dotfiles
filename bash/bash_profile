@@ -9,17 +9,8 @@ alias scratch='cd ~/scratch'
 # keep getting into trouble calling script by mistake when should be calling Rscript
 alias script='echo "you did NOT want to do that\n"'
 
-# run the ddf connection script
-alias ddf='bash ~/scripts/ddf-connect/ddf_ssh.sh'
-
 # alias for vim to nvim
 alias vim="nvim"
-
-# alias to start emacsclient in terminal and start server if not already running
-alias ec='emacsclient -a "" -t "$@" .'
-
-# alias ctags to use the brew ctags
-alias buildtags="`brew --prefix`/bin/ctags -R --exclude=.git --exclude=venv ."
 
 # alias for ranger
 alias rr='ranger'
@@ -92,14 +83,6 @@ function indx () {
 	colorssh -L 5441:10.1.24.39:5432 sthompson@10.1.24.38
 }
 
-#-- function to make scp to query box easier
-function toqueryscp () {
-	scp "$1" sthompson@10.1.24.38:/home/sthompson/"$2"
-}
-function fromqueryscp () {
-	scp sthompson@10.1.24.38:/home/sthompson/"$1" "$2"
-}
-
 # function to open up temporary file in vim, can specify file extension after command
 # defaults to txt
 function mktmp () {
@@ -138,10 +121,21 @@ function colorssh() {
 }
 
 # allow searching of google and stackoverflow from command line
-function google() {
-    open -na "Google Chrome" --args "https://www.google.com/search?q=$*"
-}
-function stackoverflow() {
-    open -na "Google Chrome" --args "https://www.google.com/search?q=site:stackoverflow.com $*"
+function ggl() {
+    open -na "Firefox" --args "https://www.google.com/search?q=$*"
 }
 
+function rsync_rename() {
+    # script to rsync then move load of files, quicker than individual scp
+    # usage: rsync_rename files.txt
+    # where files.txt is a pipe-separated file of <remote_path>|<local_path_to_move_to>
+    input_file="$1"
+    remote=${2:-sthompson@10.1.24.38}
+    files_to_rsync=$(cut "-d|" -f1 $input_file)
+    echo $files_to_rsync | tr " " "\n" | rsync -arvzh --progress $remote:/ /tmp --files-from=- 
+    cat $input_file | while IFS='|' read src dest; do
+        src="/tmp${src}"
+        mkdir -p "$(dirname "${dest}")"
+        cp $src $dest
+    done
+}
