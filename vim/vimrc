@@ -3,15 +3,13 @@ filetype off                  " required
 
 """ PLUGINS
 call plug#begin('~/.local/share/nvim/plugged')
-" to interact with R
-"Plugin 'jalvesaq/Nvim-R'
 " to view csv files nicely
 Plug 'chrisbra/csv.vim'
-" more visable status line
+" " more visable status line
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-" handles auto-completing brackets, braces etc.
-Plug 'jiangmiao/auto-pairs'
+" To give a handy, slimline position file position indictator in statusline
+Plug 'drzel/vim-line-no-indicator'
 " for changing surrounding quotes, parentheses etc.
 Plug 'tpope/vim-surround'
 " for nice python indentation
@@ -20,13 +18,8 @@ Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'jeffkreeftmeijer/vim-numbertoggle'
 " for moving between tmux and vim a bit more seamlessly
 Plug 'christoomey/vim-tmux-navigator'
-"nerdtree plugin
-"Plugin 'scrooloose/nerdtree'
 "send lines to a terminal
-"Plugin 'jalvesaq/vimcmdline'
 Plug 'kassio/neoterm'
-" get solarized theme for vim
-"Plugin 'altercation/vim-colors-solarized'
 " get Nord colorscheme
 Plug 'arcticicestudio/nord-vim'
 " manage git from vim
@@ -50,24 +43,10 @@ Plug 'neoclide/coc-tabnine', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-yaml', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-r-lsp', {'do': 'yarn install --frozen-lockfile'}
-" for syntax folding of Python
-Plug 'tmhedberg/SimpylFold'
-" indent selection
-Plug 'michaeljsmith/vim-indent-object'
 " For working with yml files
 Plug 'mrk21/yaml-vim'
-" To give a handy, slimline position file position indictator in statusline
-Plug 'drzel/vim-line-no-indicator'
-"to manage snippers
-"Plugin 'SirVer/ultisnips'
-" Snippets are separated from the engine. Add this if you want them:
-Plug 'honza/vim-snippets'
-" Commentary plugin
+" for makign comments
 Plug 'tpope/vim-commentary'
-" for JIRA integration
-Plug 'n0v1c3/vira'
-" for rope vim refactoring
-Plug 'python-rope/ropevim'
 " extend netrw a bit more
 Plug 'tpope/vim-vinegar'
 call plug#end()
@@ -84,90 +63,62 @@ set shiftwidth=4  " number of spaces to use for autoindenting
 set expandtab     " expand the tab to spaces
 set shiftround    " use multiple of shiftwidth when indenting with '<' and '>'
 set showmatch     " set show matching parenthesis
-set ignorecase    " ignore case when searching
+set ignorecase smartcase    " ignore case when searching, but become case-sensitive when uppercase is present
 set smarttab      " insert tabs on the start of a line according to shiftwidth, not tabstop
 set hlsearch      " highlight search terms
-nnoremap <Leader>n :noh<CR>
-" leader n will remove hightlights
 set incsearch     " show search matches as you type
 set history=1000         " remember more commands and search history
 set undolevels=1000      " use many muchos levels of undo
 set title                " change the terminal's title
 set visualbell           " don't beep
 set noerrorbells         " don't beep
-filetype plugin indent on    " allow to detect filetype and load corresponding plugins
-"set autochdir 	  " so that working directory changes to that for file i've opened
 set wildmenu " have a menu for file matches
 set path+=** " include subfolders in file finding
-set wildignore=*.swp,*.bak,*.pyc,*.class
-"set cursorline    " highlight the current line
+set wildignore=*.swp,*.bak,*.pyc,*.class " ignore these files when globbing
 set linebreak     " to get 'soft linebreak' i.e. wrapping at word boundaries
+set showbreak=↪   " character to use for soft linebreaks
+set splitbelow splitright " Split window below/right when creating horizontal/vertical windows
+set noswapfile " don't create swap file
+set colorcolumn=80 " Set a ruler at column 80, see https://stackoverflow.com/q/2447109/6064933
+set scrolloff=999 		 " by default have cursor in the middle of the screen
+set cmdheight=2 " Better display for messages
+set pastetoggle=<F2>     " use F2 to toggle between paste modes
+set updatetime=300 " Smaller updatetime for CursorHold & CursorHoldI
+set shortmess+=c " don't give |ins-completion-menu| messages.
+set signcolumn=yes " always show signcolumns
+
+" Random settings
 syntax enable     " enable syntax highlighting
-" Use ESC to exit insert mode in :term
-tnoremap <Esc> <C-\><C-n>    
+filetype plugin indent on    " allow to detect filetype and load corresponding plugins
+tnoremap <Esc> <C-\><C-n>    " Use ESC to exit insert mode in :term
+colorscheme nord    " use nord colorscheme
+let g:csv_nomap_cr = 1   " prevent csv plugin from remapping control keys
+let g:rg_derive_root='true' " allow ripgrep to be able to work out the root directory of the repo
+
+" Airline settings
+let g:airline_powerline_fonts = 1
+let g:airline_theme='nord'     " set airline theme to nord
 let g:airline_powerline_fonts = 1
 let g:airline_theme='solarized'     " set airline theme to solarized
 let g:airline_theme='nord'     " set airline theme to nord
-"let g:airline_solarized_bg='dark'   " set it to the dark version
 let g:airline#extensions#whitespace#enabled = 0 " airline always flags mixed intent on r files which is annoying so turn this off
 let g:airline_section_x = '%{&filetype}'
 let g:airline_section_y = '%#__accent_bold#%{LineNoIndicator()}%#__restore__#'
 let g:airline_section_z = '%2c'
-set pastetoggle=<F2>     " use F2 to toggle between paste modes
-" just semi-colon for doing stuff, but then double-tap to get a semi-colon
-" (repeat last f or t)
-map ; :
-noremap ;; ;
-"set background=dark      " use dark background
-"colorscheme solarized    " use solarized colorscheme
-colorscheme nord    " use nord colorscheme
-let g:indent_guides_auto_colors = 0
-autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=black
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=black
-"let g:indent_guides_guide_size = 1 " get very subtle indent highlights and have it start from starup
-"let g:indent_guides_color_change_percent = 1
-"let g:indent_guides_enable_on_vim_startup = 1
-nnoremap H gT     " use H to go back in tabs
-nnoremap L gt     " use L to go forward in tabs
-nnoremap <Leader>zz :let &scrolloff=999-&scrolloff<CR> " use leader-zz to focus cursor in the middle of the screen
-set scrolloff=999 		 " by default have cursor in the middle of the screen
-let g:csv_nomap_cr = 1   " prevent csv plugin from remapping control keys
-" use leader b to get list of buffers to choose from, and F7/8 to go up and
-" down buffers
-nnoremap <Leader>b :ls<CR>:b<Space> 
-nnoremap <Leader>hh :bprevious<CR>
-nnoremap <Leader>ll :bnext<CR>
- " Create Blank Newlines and stay in Normal mode
-nnoremap zj o<Esc>k
-nnoremap zk O<Esc>j
-" add yaml stuffs
-au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
-autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
-" specify line length defaults
-" https://thisismecoding.com/vim-overlength-highlight/
-"hi LineProximity ctermfg=white ctermbg=Gray
-"hi LineOverflow  ctermfg=white ctermbg=Red 
-"autocmd BufEnter,VimEnter,FileType *.r,*.R,*.py let w:m1=matchadd('LineProximity', '\%<85v.\%>80v', -1)
-"autocmd BufEnter,VimEnter,FileType *.r,*.R,*.py let w:m2=matchadd('LineOverflow', '\%>84v.\+', -1)
-"autocmd BufEnter,VimEnter,FileType,VimEnter *.r,*.R,*.py autocmd WinEnter *.rb,*.coffee let w:created=1
-"autocmd BufEnter,VimEnter,FileType,VimEnter *.r,*.R,*.py let w:created=1
-"
-" ripgrep remaps and let it derive root (use cwd)
-nnoremap <Leader>ps :Rg<SPACE>
-let g:rg_derive_root='true'
+" Indent guide settings
+let g:indent_guides_guide_size=1
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=Black
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=DarkBlue
 
-" remaps for the quickfix list navigation
-nmap <leader>qn :cn<CR>
-nmap <leader>qp :cp<CR>
+" neoterm settings
+let g:neoterm_default_mod='belowright' " open terminal in bottom split
+let g:neoterm_size=16 " terminal split size
+let g:neoterm_autoscroll=1 " scroll to the bottom when running a command
+let g:neoterm_repl_r='radian'
 
-" NERDTree Configuration
-" allows <Leader>b to accept the number of a buffer afterwards to select that buffer
-"nnoremap <Leader>nt :NERDTree<CR>
-" remaps leader nt to opening up NERD tree
-"let NERDTreeShowHidden=1 " show hidden files in NERDTRee
-" nnoremap <leader>ex :CocCommand explorer<CR>
-nnoremap <leader>ex :45vs +Explore<CR>
+" set location for neovim python 3
+let g:python3_host_prog="~/venv/neovim/bin/python"
 
 " COC VIM Configuration
 " use <tab> for trigger completion and navigate to the next complete item
@@ -183,65 +134,11 @@ inoremap <silent><expr> <TAB>
       \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
-" Navigate snippet placeholders using tab
-" let g:coc_snippet_next = '<Tab>'
-" let g:coc_snippet_prev = '<S-Tab>'
-
-" Use enter to accept snippet expansion
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<CR>"
-" Better display for messages
-set cmdheight=2
-" Smaller updatetime for CursorHold & CursorHoldI
-set updatetime=300
-" don't give |ins-completion-menu| messages.
-set shortmess+=c
-" always show signcolumns
-set signcolumn=yes
-
-" Use ep error-prev and en error-next to navigate diagnositics
-nmap <leader>ep <Plug>(coc-diagnostic-prev)
-nmap <leader>en <Plug>(coc-diagnostic-next)
-
-" Remap keys for gotos, 'major mode' commands 
-nmap <leader>md <Plug>(coc-definition)
-nmap <leader>mt <Plug>(coc-type-definition)
-nmap <leader>mi <Plug>(coc-implementation)
-nmap <leader>mr <Plug>(coc-references)
-
-" Use ms for show documentation in preview window
-nnoremap <leader>ms :call <SID>show_documentation()<CR>
-"
-" Remap for rename current word
-nmap <leader>rn <Plug>(coc-rename)
-
-" Remap for format selected region
-xmap <leader>fm  <Plug>(coc-format-selected)
-nmap <leader>fm  <Plug>(coc-format-selected)
-
-" set location for neovim python 3
-let g:python3_host_prog="~/venv/neovim/bin/python"
-"let g:python3_host_prog = "/Users/simonthompson/Documents/Projects/vim-venv/venv/bin/python3.7"
-
 " ALE Linter configuration
 " set up linters
 let g:ale_fixers = {
-  "\ 'python': ['yapf', 'pylint'] ,
   \ 'python': ['pylint'] ,
   \ }
-
-" Fugitive configuration
-""" git remaps
-nnoremap <Leader>gs :Gstatus<CR>
-nnoremap <Leader>ga :Gwrite<CR>
-nnoremap <Leader>gd :Gdiffsplit<CR>
-nnoremap <Leader>gc :Gcommit<CR>
-nnoremap <Leader>gp :Gpush<CR>
-
-" for vimcmdline, have the terminal try and run in venv
-"let cmdline_app           = {}
-"let cmdline_app['python']   = 'if [ -d "venv" ]; then source venv/bin/activate && ipython --no-autoindent; else ipython --no-autoindent; fi'
-"let cmdline_app['r'] = 'R'
-"let cmdline_follow_colorscheme = 1 "follow current colorscheme
 
 " Goyo Configuration
 " customise Goyo so that move down line by line
@@ -257,33 +154,6 @@ endfunction
 
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
-
-""" VIM-R Configuration
-"let R_assign_map = ";"  " get <- with a double-tap on semi-colon
-"let R_df_viewer = "wrangleR::rdtv(%s)"  " change the data viewer to be rdtv function in wrangleR
-""to show head of the df under cursor
-"nmap <silent> <LocalLeader>h :call RAction("head")<CR>
-""to view with dtv whole of df under cursor
-"nmap <silent> <LocalLeader>dv :call RAction("wrangleR::dtv")<CR>
-""to get glimpse of the df
-"nmap <silent> <LocalLeader>g :call RAction("dplyr::glimpse")<CR>
-""to get number of rows in df
-"nmap <silent> <LocalLeader>nr :call RAction("nrow")<CR>
-"let R_rcomment_string = "#--"          " change what gets added as a comment character
-"enable folding but open unfolded
-let r_syntax_folding = 1
-set nofoldenable
-let g:neoterm_default_mod='belowright' " open terminal in bottom split
-let g:neoterm_size=16 " terminal split size
-let g:neoterm_autoscroll=1 " scroll to the bottom when running a command
-let g:neoterm_repl_r='radian'
-nnoremap <leader>s :Tnew<cr> " open new terminal
-nnoremap <leader>q :Tclose!<cr> " close terminal
-nnoremap <leader><cr> :TREPLSendLine<cr>j " send current line and move down
-vnoremap <leader><cr> :TREPLSendSelection<cr> " send current selection
-nnoremap <leader>pp vip:TREPLSendSelection<cr>} " send current paragraph and move down
-nnoremap <leader>aa ggVG:TREPLSendSelection<cr>gg " send whole file
-
 
 "" VIM ALIASES
 command Projects cd ~/Documents/Projects
@@ -312,3 +182,98 @@ if has("autocmd")
     autocmd BufNewFile *.py 0r ~/.vim/templates/skeleton.py
   augroup END
 endif
+
+
+"""REMAPS
+" use semi-colon to get to command
+nnoremap ; :
+xnoremap ; :
+
+" use H and L to go forward and back in tabs
+nnoremap H gT     " use H to go back in tabs
+nnoremap L gt     " use L to go forward in tabs
+
+" use leader-zz to focus cursor in the middle of the screen
+nnoremap <Leader>zz :let &scrolloff=999-&scrolloff<CR> 
+
+" to take care of bracket autocompletion
+" see https://stackoverflow.com/a/34992101
+inoremap " ""<left>
+inoremap ' ''<left>
+inoremap ( ()<left>
+inoremap (<CR> (<CR>)<ESC>O
+inoremap [ []<left>
+inoremap { {}<left>
+inoremap {<CR> {<CR>}<ESC>O
+
+" Yank from current cursor position to the end of the line (make it
+" consistent with the behavior of D, C)
+nnoremap Y y$
+
+" show the full filepath with leader-fp
+nnoremap <Leader>fp :echo expand("%:p")<cr>
+
+" Continuous visual shifting (does not exit Visual mode), `gv` means
+" to reselect previous visual area, see https://superuser.com/q/310417/736190
+xnoremap < <gv
+xnoremap > >gv
+
+" Edit and reload init.vim quickly
+nnoremap <silent> <leader>ev :edit $HOME/.vimrc<cr>
+nnoremap <silent> <leader>sv :silent update $MYVIMRC <bar> source $MYVIMRC <bar>
+    \ echomsg "Nvim config successfully reloaded!"<cr>
+
+" leader n will remove hightlights
+nnoremap <Leader>n :noh<CR>
+
+" use leader b to get list of buffers to choose from, and hh and ll to go up
+" and down buffers
+nnoremap <Leader>b :ls<CR>:b<Space> 
+nnoremap <Leader>hh :bprevious<CR>
+nnoremap <Leader>ll :bnext<CR>
+
+" Create Blank Newlines and stay in Normal mode
+nnoremap zj o<Esc>k
+nnoremap zk O<Esc>j
+
+" remap ripgrep to <leader> ps (project search)
+nnoremap <Leader>ps :Rg<SPACE>
+
+" remaps leader-qn and qp for quickfix list navigation
+nnoremap <leader>qn :cn<CR>
+nnoremap <leader>qp :cp<CR>
+
+" Use ep error-prev and en error-next to navigate diagnositics
+nnoremap <leader>ep <Plug>(coc-diagnostic-prev)
+nnoremap <leader>en <Plug>(coc-diagnostic-next)
+
+" Remap keys for gotos, 'major mode' commands 
+nnoremap <leader>md <Plug>(coc-definition)
+nnoremap <leader>mt <Plug>(coc-type-definition)
+nnoremap <leader>mi <Plug>(coc-implementation)
+nnoremap <leader>mr <Plug>(coc-references)
+
+" Use ms for show documentation in preview window
+nnoremap <leader>ms :call <SID>show_documentation()<CR>
+"
+" Remap for rename current word
+nnoremap <leader>rn <Plug>(coc-rename)
+
+" Remap for format selected region
+xnoremap <leader>fm  <Plug>(coc-format-selected)
+nnoremap <leader>fm  <Plug>(coc-format-selected)
+
+" Remaps for working with a terminal
+nnoremap <leader>s :Tnew<cr> " open new terminal
+nnoremap <leader>q :Tclose!<cr> " close terminal
+nnoremap <leader><cr> :TREPLSendLine<cr>j " send current line and move down
+vnoremap <leader><cr> :TREPLSendSelection<cr> " send current selection
+nnoremap <leader>pp vip:TREPLSendSelection<cr>} " send current paragraph and move down
+nnoremap <leader>aa ggVG:TREPLSendSelection<cr>gg " send whole file
+
+" Fugitive configuration
+nnoremap <Leader>gs :Gstatus<CR>
+nnoremap <Leader>ga :Gwrite<CR>
+nnoremap <Leader>gd :Gdiffsplit<CR>
+nnoremap <Leader>gc :Gcommit<CR>
+nnoremap <Leader>gp :Gpush<CR>
