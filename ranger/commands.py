@@ -63,7 +63,7 @@ class my_edit(Command):
 
 class show_files_in_finder(Command):
     """
-    :show_in_finder
+    :show_files_in_finder
 
     Present selected files in finder
     """
@@ -77,4 +77,16 @@ class show_files_in_finder(Command):
         self.fm.notify(script)
         subprocess.check_output(["osascript", "-e", reveal_script, "-e", activate_script])
 
+
+class linecount(Command):
+    """
+    :linecount
+
+    Give the linecount for the selected file
+    """
+
+    def execute(self):
+        files = " ".join([file.path for file in self.fm.thistab.get_selection()])
+        script = "shell -p wc -l " + files
+        self.fm.execute_console(script, 'p')
 
