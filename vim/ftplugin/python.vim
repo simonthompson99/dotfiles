@@ -7,3 +7,7 @@ nnoremap <buffer> <leader>pp vap"+y:T %paste<cr>} " send current paragraph and m
 
 " turn on indent guides (not enabled by default)
 IndentGuidesEnable
+
+" effectively autocomplete apostrophe's which we might not want to do in all
+" filetypes
+inoremap ' ''<left>

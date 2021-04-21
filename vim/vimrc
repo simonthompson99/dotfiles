@@ -199,7 +199,6 @@ nnoremap <Leader>zz :let &scrolloff=999-&scrolloff<CR>
 " to take care of bracket autocompletion
 " see https://stackoverflow.com/a/34992101
 inoremap " ""<left>
-inoremap ' ''<left>
 inoremap ( ()<left>
 inoremap (<CR> (<CR>)<ESC>O
 inoremap [ []<left>

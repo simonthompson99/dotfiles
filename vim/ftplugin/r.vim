@@ -10,3 +10,6 @@ nnoremap <buffer> <leader>nr :T nrow(<C-R><C-W>)<cr> " nrow on word
 inoremap <buffer> ; <space><-
 inoremap <buffer> ;; ;
 
+" effectively autocomplete apostrophe's which we might not want to do in all
+" filetypes
+inoremap ' ''<left>
