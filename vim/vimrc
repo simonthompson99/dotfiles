@@ -11,7 +11,7 @@ Plug 'vim-airline/vim-airline-themes'
 " To give a handy, slimline position file position indictator in statusline
 Plug 'drzel/vim-line-no-indicator'
 " for changing surrounding quotes, parentheses etc.
-Plug 'tpope/vim-surround'
+Plug 'machakann/vim-sandwich'
 " for nice python indentation
 Plug 'Vimjas/vim-python-pep8-indent'
 " to get hybrid line numbering, relative and absolute
@@ -94,6 +94,11 @@ tnoremap <Esc> <C-\><C-n>    " Use ESC to exit insert mode in :term
 colorscheme nord    " use nord colorscheme
 let g:csv_nomap_cr = 1   " prevent csv plugin from remapping control keys
 let g:rg_derive_root='true' " allow ripgrep to be able to work out the root directory of the repo
+
+" enable spell only if file type is normal text
+" stolen from https://github.com/Blacksuan19/init.nvim/blob/master/init.vim
+let spellable = ['markdown', 'gitcommit', 'txt', 'text']
+autocmd BufEnter * if index(spellable, &ft) < 0 | set nospell | else | set spell | endif
 
 " Airline settings
 let g:airline_powerline_fonts = 1
