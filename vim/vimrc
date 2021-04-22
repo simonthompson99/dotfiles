@@ -176,6 +176,23 @@ function! s:DiffWithSaved()
 endfunction
 com! DiffSaved call s:DiffWithSaved()
 
+" function to surround lines in a selection (or defaults to whole file) with a 
+" prefix and a suffic
+function! SurroundLines(startline, endline) " exclamation point overwrites any existing function of same name with this one
+    call inputsave() " need inputsave and inputrestore so vim knows to capture keystrokes
+    let pref = input('Enter Prefix: ')
+    let suff = input('Enter Suffix: ')
+    call inputrestore()
+    "\= is the way to refer to a variable
+    exe a:startline.','.a:endline.'s/^/\=pref' 
+    exe a:startline.','.a:endline.'s/$/\=suff'
+endfunction
+
+" now need to add new command to call the function, % default argument in
+" range gives default of 1,$, <line1> and <line2> are escape sequences for
+" start and end of selection
+com! -range=% SurroundLines call SurroundLines(<line1>, <line2>)
+
 """ VIM TEMPLATES
 "setup templates
 if has("autocmd")
