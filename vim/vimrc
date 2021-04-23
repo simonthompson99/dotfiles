@@ -97,7 +97,7 @@ let g:rg_derive_root='true' " allow ripgrep to be able to work out the root dire
 
 " enable spell only if file type is normal text
 " stolen from https://github.com/Blacksuan19/init.nvim/blob/master/init.vim
-let spellable = ['markdown', 'gitcommit', 'txt', 'text']
+let spellable = ['markdown', 'gitcommit']
 autocmd BufEnter * if index(spellable, &ft) < 0 | set nospell | else | set spell | endif
 
 " Airline settings
