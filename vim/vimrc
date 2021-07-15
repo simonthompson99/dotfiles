@@ -12,6 +12,8 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'drzel/vim-line-no-indicator'
 " for changing surrounding quotes, parentheses etc.
 Plug 'machakann/vim-sandwich'
+" auto closing of brackets etc.
+Plug 'jiangmiao/auto-pairs'
 " for nice python indentation
 Plug 'Vimjas/vim-python-pep8-indent'
 " to get hybrid line numbering, relative and absolute
@@ -36,6 +38,8 @@ Plug 'nathanaelkane/vim-indent-guides'
 Plug 'jremmen/vim-ripgrep'
 " show linting
 Plug 'dense-analysis/ale'
+" use snippets
+Plug 'honza/vim-snippets'
 " load language server
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'fannheyward/coc-pyright', {'do': 'yarn install --frozen-lockfile'}
@@ -43,6 +47,7 @@ Plug 'neoclide/coc-tabnine', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-yaml', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-r-lsp', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-snippets' ", {'do': 'yarn install --frozen-lockfile'}
 " For working with yml files
 Plug 'mrk21/yaml-vim'
 " for makign comments
@@ -86,6 +91,7 @@ set pastetoggle=<F2>     " use F2 to toggle between paste modes
 set updatetime=300 " Smaller updatetime for CursorHold & CursorHoldI
 set shortmess+=c " don't give |ins-completion-menu| messages.
 set signcolumn=yes " always show signcolumns
+set termguicolors " see https://gist.github.com/andersevenrud/015e61af2fd264371032763d4ed965b6
 
 " Random settings
 syntax enable     " enable syntax highlighting
@@ -201,7 +207,7 @@ if has("autocmd")
     autocmd BufNewFile *.r 0r ~/.vim/templates/skeleton.r
     autocmd BufNewFile *.R 0r ~/.vim/templates/skeleton.r
     autocmd BufNewFile *.Rmd 0r ~/.vim/templates/skeleton.rmd
-    autocmd BufNewFile *.py 0r ~/.vim/templates/skeleton.py
+    autocmd BufNewFile *.md 0r ~/.vim/templates/skeleton.md
   augroup END
 endif
 
@@ -220,12 +226,12 @@ nnoremap <Leader>zz :let &scrolloff=999-&scrolloff<CR>
 
 " to take care of bracket autocompletion
 " see https://stackoverflow.com/a/34992101
-inoremap " ""<left>
-inoremap ( ()<left>
-inoremap (<CR> (<CR>)<ESC>O
-inoremap [ []<left>
-inoremap { {}<left>
-inoremap {<CR> {<CR>}<ESC>O
+""inoremap " ""<left>
+""inoremap ( ()<left>
+""inoremap (<CR> (<CR>)<ESC>O
+""inoremap [ []<left>
+""inoremap { {}<left>
+""inoremap {<CR> {<CR>}<ESC>O
 
 " Yank from current cursor position to the end of the line (make it
 " consistent with the behavior of D, C)
@@ -243,6 +249,16 @@ xnoremap > >gv
 nnoremap <silent> <leader>ev :edit $HOME/.vimrc<cr>
 nnoremap <silent> <leader>sv :silent update $MYVIMRC <bar> source $MYVIMRC <bar>
     \ echomsg "Nvim config successfully reloaded!"<cr>
+
+" copy filename, relative path, full path, and directory to system clipboard
+" relative path  (src/foo.txt)
+nnoremap <leader>cfr :let @+=expand("%")<CR>
+" absolute path  (/something/src/foo.txt)
+nnoremap <leader>cfp :let @+=expand("%:p")<CR>
+" filename       (foo.txt)
+nnoremap <leader>cff :let @+=expand("%:t")<CR>
+" directory name (/something/src)
+nnoremap <leader>cfd :let @+=expand("%:p:h")<CR>
 
 " leader n will remove hightlights
 nnoremap <Leader>n :noh<CR>
@@ -298,3 +314,15 @@ nnoremap <Leader>ga :Gwrite<CR>
 nnoremap <Leader>gd :Gdiffsplit<CR>
 nnoremap <Leader>gc :Gcommit<CR>
 nnoremap <Leader>gp :Gpush<CR>
+
+" Snippet commands
+" Use <C-S-l> for trigger snippet expand.
+" imap <C-S-l> <Plug>(coc-snippets-expand)
+" Use <C-S-j> for select text for visual placeholder of snippet.
+vmap <C-S-j> <Plug>(coc-snippets-select)
+" Use <C-S-j> for jump to next placeholder, it's default of coc.nvim
+let g:coc_snippet_next = '<c-S-j>'
+" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
+let g:coc_snippet_prev = '<c-S-k>'
+" Use <C-j> for both expand and jump (make expand higher priority.)
+imap <C-S-j> <Plug>(coc-snippets-expand-jump)

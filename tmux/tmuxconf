@@ -13,6 +13,9 @@ bind-key K resize-pane -U 5
 bind-key H resize-pane -L 5
 bind-key L resize-pane -R 5
 
+#<prefix> and X to kill all windows and kill the session
+bind X confirm-before killw
+
 # Smart pane switching with awareness of Vim splits.
 # See: https://github.com/christoomey/vim-tmux-navigator
 #is_vim="ps -o state= -o comm= -t '#{pane_tty}' \
@@ -35,6 +38,10 @@ bind -n C-l run "(tmux display-message -p '#{pane_current_command}' | grep -iqE 
 #set default term to zsh
 #set-option -g default-shell /usr/local/bin/zsh
 #set -g default-command /usr/local/bin/zsh
+# set term colors, from https://gist.github.com/andersevenrud/015e61af2fd264371032763d4ed965b6
+# set -g default-terminal "tmux-256color"
+set -g default-terminal "xterm-256color"
+# set -ag terminal-overrides ",xterm-256color:RGB"
 
 # for copy paste in Mac OS, needs brew install reattach-to-user-namespace first
 # use v selection keys then y to copy to system buffer
@@ -68,6 +75,13 @@ setw -g pane-base-index 1
 
 # renumber the windows rather than keeping original numbers
 set-option -g renumber-windows on
+
+set -g window-style 'bg=default'
+set -g window-active-style 'bg=default'
+
+set -g pane-active-border-style 'fg=colour1'
+
+set -g focus-events on
 
 ##### COLOUR (Solarized dark)
 #

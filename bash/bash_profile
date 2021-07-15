@@ -1,22 +1,15 @@
-# go to my projects folder
+# aliases
 alias proj='cd ~/Documents/Projects'
 alias shproj='cd ~/Documents/Projects/short-projects'
 alias utils='cd ~/Documents/Utilities'
-
-# go to scratch folder
 alias scratch='cd ~/scratch'
+alias vim="nvim"
+alias rr='ranger'
+alias ip='iPython'
+alias lal='ls -al'
 
 # keep getting into trouble calling script by mistake when should be calling Rscript
 alias script='echo "you did NOT want to do that\n"'
-
-# alias for vim to nvim
-alias vim="nvim"
-
-# alias for ranger
-alias rr='ranger'
-
-# alias for iPython
-alias ip='iPython'
 
 # alias to run twosets and quicktab
 alias twosets='python /Users/simonthompson/Documents/Utilities/mini_utilities/twosets/twosets.py'
