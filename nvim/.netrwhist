@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =1
+let g:netrw_dirhist_1='/Users/simonthompson/Documents/Projects/research-dataset'
+let g:netrw_dirhist_0='/Users/simonthompson/Dropbox/config-files/ranger'
+let g:netrw_dirhist_9='/Users/simonthompson/Documents/Projects/additional_findings_for_bio/consent_audit'
+let g:netrw_dirhist_8='/Users/simonthompson/Documents/Projects/dummy-research-data'
+let g:netrw_dirhist_7='/Users/simonthompson/Documents/Projects/dummy-research-data/dummy_data_v11'
+let g:netrw_dirhist_6='/Users/simonthompson/Documents/Projects/dummy-research-data'
+let g:netrw_dirhist_5='/Users/simonthompson/scratch/participant_matching_orphan_forms'
+let g:netrw_dirhist_4='/Users/simonthompson/Documents/Projects/consent-audit/etl'
+let g:netrw_dirhist_3='/Users/simonthompson/Documents/Projects/consent-audit'
+let g:netrw_dirhist_2='/Users/simonthompson/Documents/Projects/additional_findings_for_bio'
