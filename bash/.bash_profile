@@ -1,8 +1,13 @@
+# important folders
+MY_PROJ_FOLDER="/Users/simonthompson/Documents/Projects"
+MY_SCRATCH_FOLDER="/Users/simonthompson/scratch"
+MY_UTILS_FOLDER="/Users/simonthompson/Documents/Utilities"
+
 # aliases
-alias proj='cd ~/Documents/Projects'
-alias shproj='cd ~/Documents/Projects/short-projects'
-alias utils='cd ~/Documents/Utilities'
-alias scratch='cd ~/scratch'
+alias proj='cd $MY_PROJ_FOLDER'
+alias shproj='cd $MY_PROJ_FOLDER/short-projects'
+alias utils='cd $MY_UTILS_FOLDER'
+alias scratch='cd $MY_SCRATCH_FOLDER'
 alias vim="nvim"
 alias rr='ranger'
 alias ip='iPython'
@@ -12,19 +17,17 @@ alias lal='ls -al'
 alias script='echo "you did NOT want to do that\n"'
 
 # alias to run twosets and quicktab
-alias twosets='python /Users/simonthompson/Documents/Utilities/mini_utilities/twosets/twosets.py'
-alias quicktab='python /Users/simonthompson/Documents/Utilities/mini_utilities/quicktab/quicktab.py'
-alias mquicktab='python /Users/simonthompson/Documents/Utilities/mini_utilities/mquicktab/mquicktab.py'
+alias twosets='python $MY_UTILS_FOLDER/mini_utilities/twosets/twosets.py'
+alias quicktab='python $MY_UTILS_FOLDER/mini_utilities/quicktab/quicktab.py'
+alias mquicktab='python $MY_UTILS_FOLDER/mini_utilities/mquicktab/mquicktab.py'
 
 # Virtualenv aliases and functions
 alias vcreate='virtualenv venv -p python3'
 function vact () {
 	source venv/bin/activate
-	# && tmux select-pane -P 'fg=blue'
 }
 function vdeact () {
 	deactivate
-	#tmux select-pane -P 'fg=default'
 }
 
 ## aliases for connecting to cdt server stuff
@@ -131,4 +134,33 @@ function rsync_rename() {
         mkdir -p "$(dirname "${dest}")"
         cp $src $dest
     done
+}
+
+function backup() {
+    # function to backup a folder excluding files/directories in a
+    # .buignore reference file
+    # .buginore should be list of either files or folders to be excluded
+    # e.g.:
+    # *.DS_Store
+    # ignore-fldr
+    
+    BACKUP_ROOT=${1:?"missing backup root"}
+    BACKUP_DEST=${2:?"missing backup destination"}
+    BACKUPTIME=`date +%y-%m-%d` #get the current date
+    BACKUP_FILENAME="$BACKUP_DEST-$BACKUPTIME.tar.gz"
+
+    if [ -f $BACKUP_ROOT/.buignore ]; then
+
+        echo "-- ignoring files from $BACKUP_ROOT/.buignore"
+        tar czfv "$BACKUP_FILENAME" -X "$BACKUP_ROOT/.buignore" $BACKUP_ROOT
+
+    else
+
+        echo "-- no .buignore file found"
+        tar czfv "$BACKUP_FILENAME" $BACKUP_ROOT
+
+    fi
+
+    echo "-- backup $BACKUP_ROOT to $BACKUP_FILENAME done"
+
 }
