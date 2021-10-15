@@ -3,6 +3,7 @@
 	name = Simon Thompson
 [core]
 	excludesfile = /Users/simonthompson/.gitignore_global
+	editor = nvim
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 
