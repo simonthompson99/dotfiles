@@ -1,13 +1,13 @@
 # important folders
-MY_PROJ_FOLDER="/Users/simonthompson/proj"
+MY_PROJ_FOLDER="/Users/simonthompson/prj"
 MY_SCRATCH_FOLDER="/Users/simonthompson/scr"
-MY_UTILS_FOLDER="/Users/simonthompson/env/utils"
+MY_UTILS_FOLDER="/Users/simonthompson/env/utilities"
 
 # aliases
-alias proj='cd $MY_PROJ_FOLDER'
+alias prj='cd $MY_PROJ_FOLDER'
 alias shproj='cd $MY_PROJ_FOLDER/short-projects'
 alias utils='cd $MY_UTILS_FOLDER'
-alias scratch='cd $MY_SCRATCH_FOLDER'
+alias scr='cd $MY_SCRATCH_FOLDER'
 alias vim="nvim"
 alias rr='ranger'
 alias ip='iPython'
@@ -17,9 +17,9 @@ alias lal='ls -al'
 alias script='echo "you did NOT want to do that\n"'
 
 # alias to run twosets and quicktab
-alias twosets='python $MY_UTILS_FOLDER/mini_utilities/twosets/twosets.py'
-alias quicktab='python $MY_UTILS_FOLDER/mini_utilities/quicktab/quicktab.py'
-alias mquicktab='python $MY_UTILS_FOLDER/mini_utilities/mquicktab/mquicktab.py'
+alias twosets='python $MY_UTILS_FOLDER/twosets/twosets.py'
+alias quicktab='python $MY_UTILS_FOLDER/quicktab/quicktab.py'
+alias mquicktab='python $MY_UTILS_FOLDER/mquicktab/mquicktab.py'
 
 # Virtualenv aliases and functions
 # alias vcreate='virtualenv venv -p python3'

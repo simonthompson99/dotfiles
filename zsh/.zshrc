@@ -93,7 +93,7 @@ tmux
 
 source $ZSH/oh-my-zsh.sh
 
-source ~/.bashrc
+# source ~/.bashrc
 
 # User configuration
 
@@ -129,3 +129,4 @@ alias -s {py,r,R,rmd,txt,csv,log,md,sh,json,sql}=vim
 
 # to init pyenv
 eval "$(pyenv init -)"
+if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
