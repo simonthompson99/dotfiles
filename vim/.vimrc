@@ -129,7 +129,7 @@ let g:neoterm_autoscroll=1 " scroll to the bottom when running a command
 let g:neoterm_repl_r='radian'
 
 " set location for neovim python 3
-let g:python3_host_prog="~/venv/neovim/bin/python"
+let g:python3_host_prog="~/.pyenv/versions/neovim/bin/python"
 
 " COC VIM Configuration
 " use <tab> for trigger completion and navigate to the next complete item

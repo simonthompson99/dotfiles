@@ -2,15 +2,15 @@
 	"diagnostic.displayByAle": true,
     // python
     "python.pythonPath": "python",
-    "python.venvPath": "~/venv/",
+    "python.venvPath": "~/.pyenv/versions/3.9.4",
     // jedi
-    "python.jediPath": "~/venv/jedi/lib/python3.7/site-packages/",
+    "python.jediPath": "~/.pyenv/versions/jedi/lib/python3.9/site-packages/",
     "python.jediEnabled": true,
     "suggest.timeout": 5000,
     //linting
     "python.linting.pylintEnabled": true,
     "python.linting.flake8Enabled": false,
-    "python.linting.pylintPath": "~/venv/pylint/bin/pylint",
+    "python.linting.pylintPath": "~/.pyenv/versions/pylint/bin/pylint",
     "languageserver": {
     "R": {
         "command": "/usr/local/bin/R",
