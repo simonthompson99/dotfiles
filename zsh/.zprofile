@@ -1,7 +1,7 @@
 # important folders
-MY_PROJ_FOLDER="/Users/simonthompson/Documents/Projects"
-MY_SCRATCH_FOLDER="/Users/simonthompson/scratch"
-MY_UTILS_FOLDER="/Users/simonthompson/Documents/Utilities"
+MY_PROJ_FOLDER="/Users/simonthompson/proj"
+MY_SCRATCH_FOLDER="/Users/simonthompson/scr"
+MY_UTILS_FOLDER="/Users/simonthompson/env/utils"
 
 # aliases
 alias proj='cd $MY_PROJ_FOLDER'
@@ -22,13 +22,13 @@ alias quicktab='python $MY_UTILS_FOLDER/mini_utilities/quicktab/quicktab.py'
 alias mquicktab='python $MY_UTILS_FOLDER/mini_utilities/mquicktab/mquicktab.py'
 
 # Virtualenv aliases and functions
-alias vcreate='virtualenv venv -p python3'
-function vact () {
-	source venv/bin/activate
-}
-function vdeact () {
-	deactivate
-}
+# alias vcreate='virtualenv venv -p python3'
+# function vact () {
+# 	source venv/bin/activate
+# }
+# function vdeact () {
+# 	deactivate
+# }
 
 ## aliases for connecting to cdt server stuff
 #-- function to connect to dams db copy
@@ -164,3 +164,7 @@ function backup() {
     echo "-- backup $BACKUP_ROOT to $BACKUP_FILENAME done"
 
 }
+
+# some init stuff
+eval "$(/opt/homebrew/bin/brew shellenv)"
+eval "$(pyenv init --path)"
