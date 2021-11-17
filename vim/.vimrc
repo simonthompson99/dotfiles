@@ -54,6 +54,8 @@ Plug 'mrk21/yaml-vim'
 Plug 'tpope/vim-commentary'
 " extend netrw a bit more
 Plug 'tpope/vim-vinegar'
+" vimwiki
+Plug 'vimwiki/vimwiki'
 call plug#end()
 
 """ VIM BEHAVIOUR
@@ -208,6 +210,8 @@ if has("autocmd")
     autocmd BufNewFile *.R 0r ~/.vim/templates/skeleton.r
     autocmd BufNewFile *.Rmd 0r ~/.vim/templates/skeleton.rmd
     autocmd BufNewFile *.md 0r ~/.vim/templates/skeleton.md
+    autocmd BufNewFile *.tsk 0r ~/.vim/templates/skeleton.tsk
+    autocmd BufNewFile *.prj 0r ~/.vim/templates/skeleton.prj
   augroup END
 endif
 
@@ -326,3 +330,19 @@ let g:coc_snippet_next = '<c-S-j>'
 let g:coc_snippet_prev = '<c-S-k>'
 " Use <C-j> for both expand and jump (make expand higher priority.)
 imap <C-S-j> <Plug>(coc-snippets-expand-jump)
+
+" vim wiki stuff
+" initial set-up
+let g:vimwiki_list = [{'path': '/Users/simonthompson/OneDrive - Genomics England Ltd/wiki', 'syntax': 'markdown'}]
+
+" autopopulate diary links in diary index
+command! Diary VimwikiDiaryIndex
+augroup vimwikigroup
+    autocmd!
+    " automatically update links on read diary
+    autocmd BufRead,BufNewFile diary.wiki VimwikiDiaryGenerateLinks
+augroup end
+
+" use F3 to get datestamp in insert or normal mode
+imap <F3> <C-R>=strftime("%Y-%m-%d")<CR>
+nmap <F3> i<C-R>=strftime("%Y-%m-%d")<CR><Esc>
