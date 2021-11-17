@@ -9,17 +9,18 @@ alias shproj='cd $MY_PROJ_FOLDER/short-projects'
 alias utils='cd $MY_UTILS_FOLDER'
 alias scr='cd $MY_SCRATCH_FOLDER'
 alias vim="nvim"
-alias rr='ranger'
-alias ip='iPython'
+alias rr='pyenv activate utils && ranger && pyenv deactivate'
+# alias ip='iPython'
+alias vd='pyenv activate utils && visidata && pyenv deactivate'
 alias lal='ls -al'
 
 # keep getting into trouble calling script by mistake when should be calling Rscript
 alias script='echo "you did NOT want to do that\n"'
 
 # alias to run twosets and quicktab
-alias twosets='python $MY_UTILS_FOLDER/twosets/twosets.py'
-alias quicktab='python $MY_UTILS_FOLDER/quicktab/quicktab.py'
-alias mquicktab='python $MY_UTILS_FOLDER/mquicktab/mquicktab.py'
+alias twosets='pyenv activate utils && python $MY_UTILS_FOLDER/twosets/twosets.py & pyenv deactivate'
+alias quicktab='pyenv activate utils && python $MY_UTILS_FOLDER/quicktab/quicktab.py & pyenv deactivate'
+alias mquicktab='pyenv activate utils && python $MY_UTILS_FOLDER/mquicktab/mquicktab.py & pyenv deactivate'
 
 # Virtualenv aliases and functions
 # alias vcreate='virtualenv venv -p python3'
