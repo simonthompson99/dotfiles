@@ -21,6 +21,13 @@ if caffeine then
     setCaffeineDisplay(hs.caffeinate.get("displayIdle"))
 end
 
+require("teams")
+hs.hotkey.bind({'shift', 'ctrl', 'alt', 'cmd'}, ";", teams.toggleMute)
+
+require("toggle_audio")
+hs.hotkey.bind({'shift', 'ctrl', 'alt', 'cmd'}, "a", toggle_audio_output)
+
+
 --hs.loadSpoon("Pomodoro")
 
 -- hs.loadSpoon("MicMute")
