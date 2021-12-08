@@ -13,6 +13,7 @@ alias rr='pyenv activate utils && ranger && pyenv deactivate'
 # alias ip='iPython'
 alias vd='pyenv activate utils && visidata && pyenv deactivate'
 alias lal='ls -al'
+alias tsm='tmuxinator start main'
 
 # keep getting into trouble calling script by mistake when should be calling Rscript
 alias script='echo "you did NOT want to do that\n"'
