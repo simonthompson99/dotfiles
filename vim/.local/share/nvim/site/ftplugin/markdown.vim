@@ -2,12 +2,12 @@
 setlocal colorcolumn=
 
 " don't like having the coc autocomplete suggestions on in markdown
-let b:coc_suggest_disable = 1
+" let b:coc_suggest_disable = 1
 
 " Write the current buffer to a temp file add html prefix and suffix to open
 " in Firefox
 " uses Strapdown.js - https://strapdownjs.com/
-function! MdPreview()
+function! MdPreviewOld()
     " define all the variables
     let l:prefix_html = '<!DOCTYPE html> <html> <xmp theme="spacelab" style="display:none;">'
     let l:suffix_html = '</xmp> <script src="http://strapdownjs.com/v/0.2/strapdown.js"></script> </html>'
@@ -30,6 +30,18 @@ function! MdPreview()
     q
     " tell OS to open the tmp html file
     silent execute '!open ' . l:tmp_html_file
+endfunction
+
+" open buffer in Firefox so that markdown extension will display it
+function! MdPreview()
+    silent execute '!open -a "Firefox.app" "%"'
+endfunction
+
+" export out current file to docx
+function! MdToDocx()
+    let l:tmp_docx_file = tempname() . '.docx'
+    silent execute '!pandoc -o ' . l:tmp_docx_file . ' "%" -f markdown --from markdown-yaml_metadata_block'
+    silent execute '!open ' . l:tmp_docx_file
 endfunction
 
 " make a mapping

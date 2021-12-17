@@ -13,7 +13,7 @@
     "python.linting.pylintPath": "~/.pyenv/versions/pylint/bin/pylint",
     "languageserver": {
     "R": {
-        "command": "/usr/local/bin/R",
+        "command": "/opt/homebrew/bin/R",
         "args" : [ "--slave", "-e", "languageserver::run()"],
         "filetypes" : ["r"]
     }
