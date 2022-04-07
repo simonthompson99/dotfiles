@@ -335,14 +335,6 @@ imap <C-S-j> <Plug>(coc-snippets-expand-jump)
 " initial set-up
 let g:vimwiki_list = [{'path': '/Users/simonthompson/OneDrive - Genomics England Ltd/wiki', 'syntax': 'markdown'}]
 
-" autopopulate diary links in diary index
-command! Diary VimwikiDiaryIndex
-augroup vimwikigroup
-    autocmd!
-    " automatically update links on read diary
-    autocmd BufRead,BufNewFile diary.wiki VimwikiDiaryGenerateLinks
-augroup end
-
 " use F3 to get datestamp in insert or normal mode
-imap <F3> <C-R>=strftime("%Y-%m-%d")<CR>
-nmap <F3> i<C-R>=strftime("%Y-%m-%d")<CR><Esc>
+imap <F3> <C-R>=strftime("%Y%m%d")<CR>
+nmap <F3> i<C-R>=strftime("%Y%m%d")<CR><Esc>

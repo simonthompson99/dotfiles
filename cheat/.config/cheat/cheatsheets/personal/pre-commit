@@ -1,0 +1,8 @@
+# install the hooks
+pre-commit install
+
+# run pre-commit on all the files
+pre-commit run -a
+
+# run pre-commit on subset of files in repo
+git ls-files -- '*.py' | xargs pre-commit run --files

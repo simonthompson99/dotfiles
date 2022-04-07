@@ -14,6 +14,7 @@ alias rr='pyenv activate utils && ranger && pyenv deactivate'
 alias vd='pyenv activate utils && visidata && pyenv deactivate'
 alias lal='ls -al'
 alias tsm='tmuxinator start main'
+alias lg='lazygit'
 
 # keep getting into trouble calling script by mistake when should be calling Rscript
 alias script='echo "you did NOT want to do that\n"'
@@ -23,69 +24,11 @@ alias twosets='pyenv activate utils && python $MY_UTILS_FOLDER/twosets/twosets.p
 alias quicktab='pyenv activate utils && python $MY_UTILS_FOLDER/quicktab/quicktab.py & pyenv deactivate'
 alias mquicktab='pyenv activate utils && python $MY_UTILS_FOLDER/mquicktab/mquicktab.py & pyenv deactivate'
 
-# Virtualenv aliases and functions
-# alias vcreate='virtualenv venv -p python3'
-# function vact () {
-# 	source venv/bin/activate
-# }
-# function vdeact () {
-# 	deactivate
-# }
-
-## aliases for connecting to cdt server stuff
-#-- function to connect to dams db copy
-function dams () {
-	echo -ne "\033]0;"DAMS"\007"
-	clear
-	echo "[.....          [.       [..       [..  [.. ..  ";
-	echo "[..   [..      [. ..     [. [..   [...[..    [..";
-	echo "[..    [..    [.  [..    [.. [.. [ [.. [..      ";
-	echo "[..    [..   [..   [..   [..  [..  [..   [..    ";
-	echo "[..    [..  [...... [..  [..   [.  [..      [.. ";
-	echo "[..   [..  [..       [.. [..       [..[..    [..";
-	echo "[.....    [..         [..[..       [..  [.. ..  ";
-	echo "                                                ";
-	colorssh -L 5438:10.1.24.33:5432 sthompson@10.1.24.38
-}
-
-#-- alias to connect to ddf Prod db copy
-alias ddfprod="clear; echo 'DDF PROD'; ssh -L 5439:10.1.24.34:5432 sthompson@10.1.24.38"
-
-#-- function to connect to mis db copy
-function mis () {
-	echo -ne "\033]0;"MIS"\007"
-	clear 
-	echo "__/\\\\____________/\\\\__/\\\\\\\\\\\_____/\\\\\\\\\\\___        ";
-	echo " _\/\\\\\\________/\\\\\\_\/////\\\///____/\\\/////////\\\_       ";
-	echo "  _\/\\\//\\\____/\\\//\\\_____\/\\\______\//\\\______\///__      ";
-	echo "   _\/\\\\///\\\/\\\/_\/\\\_____\/\\\_______\////\\\_________     ";
-	echo "    _\/\\\__\///\\\/___\/\\\_____\/\\\__________\////\\\______    ";
-	echo "     _\/\\\____\///_____\/\\\_____\/\\\_____________\////\\\___   ";
-	echo "      _\/\\\_____________\/\\\_____\/\\\______/\\\______\//\\\__  ";
-	echo "       _\/\\\_____________\/\\\__/\\\\\\\\\\\_\///\\\\\\\\\\\/___ ";
-	echo "        _\///______________\///__\///////////____\///////////_____";
-	colorssh -L 5440:10.1.24.37:5432 sthompson@10.1.24.38
-}
-
-#-- function to connect to index db
-function indx () {
-	echo -ne "\033]0;"INDX"\007"
-	clear
-	echo "::::::::::: ::::    ::: :::::::::  :::    ::: ";
-	echo "    :+:     :+:+:   :+: :+:    :+: :+:    :+: ";
-	echo "    +:+     :+:+:+  +:+ +:+    +:+  +:+  +:+  ";
-	echo "    +#+     +#+ +:+ +#+ +#+    +:+   +#++:+   ";
-	echo "    +#+     +#+  +#+#+# +#+    +#+  +#+  +#+  ";
-	echo "    #+#     #+#   #+#+# #+#    #+# #+#    #+# ";
-	echo "########### ###    #### #########  ###    ### ";
-	colorssh -L 5441:10.1.24.39:5432 sthompson@10.1.24.38
-}
-
 # function to open up temporary file in vim, can specify file extension after command
 # defaults to txt
 function mktmp () {
 	FILE_SUFFIX=${1:-txt}
-	FILE_NAME="/Users/simonthompson/scratch/tmp$(date +%Y%m%d%H%M%S).$FILE_SUFFIX"
+	FILE_NAME="$MY_SCRATCH_FOLDER/$(date +%Y%m%d%H%M%S).$FILE_SUFFIX"
 	vim $FILE_NAME
 }
 

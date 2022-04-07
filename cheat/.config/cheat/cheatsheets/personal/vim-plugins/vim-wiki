@@ -1,0 +1,15 @@
+# Open wiki homepage
+<leader>ww
+
+# Open today's diary page
+<leader>w<leader>w
+
+# Open diary index
+<leader>wi
+
+# update diary index
+<leader>w<leader>i
+
+# Move forward and backwards through links
+<tab>/<s-tab>
+

@@ -1,0 +1,5 @@
+# To copy file from local to s3 (add --recursive to copy folder)
+aws s3 cp <local-path> s3://<bucket-path> --sse
+
+# To sync folder to s3
+aws s3 sync <source-folder> <destination-folder> --sse

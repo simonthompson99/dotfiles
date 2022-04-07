@@ -1,0 +1,5 @@
+# selecting/filtering rows
+,       select all rows with current value in current column
+"       new sheet with only selected rows
+s/t     select/toggle rows
+gu      unselect all rows
