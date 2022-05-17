@@ -22,7 +22,7 @@ if caffeine then
 end
 
 require("teams")
-hs.hotkey.bind({'shift', 'ctrl', 'alt', 'cmd'}, ";", teams.toggleMute)
+hs.hotkey.bind({'shift', 'ctrl', 'alt', 'cmd'}, ";", toggleMsTeamsMute)
 
 require("toggle_audio")
 hs.hotkey.bind({'shift', 'ctrl', 'alt', 'cmd'}, "a", toggle_audio_output)
@@ -31,7 +31,7 @@ hs.hotkey.bind({'shift', 'ctrl', 'alt', 'cmd'}, "a", toggle_audio_output)
 --hs.loadSpoon("Pomodoro")
 
 -- hs.loadSpoon("MicMute")
--- spoon.MicMute:bindHotkeys({toggle = {{"cmd"}, "m"}}, 0.75)
+-- spoon.MicMute:bindHotkeys({toggle = {{'shift', 'ctrl', 'alt', 'cmd'}, ";"}}, 0.75)
 
 --local hyper = {"ctrl", "alt", "cmd"}
 --

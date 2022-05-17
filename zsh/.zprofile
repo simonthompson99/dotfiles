@@ -11,7 +11,7 @@ alias scr='cd $MY_SCRATCH_FOLDER'
 alias vim="nvim"
 alias rr='pyenv activate utils && ranger && pyenv deactivate'
 # alias ip='iPython'
-alias vd='pyenv activate utils && visidata && pyenv deactivate'
+alias visi='pyenv activate utils && visidata && pyenv deactivate'
 alias lal='ls -al'
 alias tsm='tmuxinator start main'
 alias lg='lazygit'
@@ -113,3 +113,6 @@ function backup() {
 # some init stuff
 eval "$(/opt/homebrew/bin/brew shellenv)"
 eval "$(pyenv init --path)"
+
+NVIM_BEGINNER=~/.config/nvim-beginner
+alias nvb='XDG_DATA_HOME=$NVIM_BEGINNER/share XDG_CONFIG_HOME=$NVIM_BEGINNER nvim'
