@@ -6,3 +6,6 @@ du -sh
 
 # To sort directories/files by size(human-readable):
 du -sh * | sort -rh 
+
+# top level human readable usage
+du -h -d1 . 2>/dev/null

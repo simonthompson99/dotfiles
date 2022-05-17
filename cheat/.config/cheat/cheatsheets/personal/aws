@@ -3,3 +3,6 @@ aws s3 cp <local-path> s3://<bucket-path> --sse
 
 # To sync folder to s3
 aws s3 sync <source-folder> <destination-folder> --sse
+
+# start session on EC2 (e.g. query)
+aws ssm start-session --target i-078642b1fe4bc5db4 --region eu-west-2
