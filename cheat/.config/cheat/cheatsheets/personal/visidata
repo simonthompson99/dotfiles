@@ -3,3 +3,4 @@
 "       new sheet with only selected rows
 s/t     select/toggle rows
 gu      unselect all rows
+z| expr	filter rows based on a python expression
