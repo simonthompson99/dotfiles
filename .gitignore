@@ -1,2 +1,6 @@
 .DS_Store
 vim/.local/share/nvim/*
+
+vim/.config/nvim/plugin/packer_compiled.lua
+
+*.pyc
