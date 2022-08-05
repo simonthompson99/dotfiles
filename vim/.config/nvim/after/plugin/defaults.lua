@@ -26,6 +26,8 @@ opt.scrolloff=999 -- keep cursor in the middle of the screen
 opt.foldlevel = 20 -- treesitter based-folding
 opt.foldmethod = "expr" -- treesitter based-folding
 opt.foldexpr = "nvim_treesitter#foldexpr()" -- treesitter based-folding
+opt.splitright = true -- open vsplits on right
+opt.splitbelow = true -- open splits below
 
 -- Highlight on yank
 vim.cmd [[
@@ -34,3 +36,31 @@ vim.cmd [[
     autocmd TextYankPost * silent! lua vim.highlight.on_yank()
   augroup end
 ]]
+
+-- Yank filenames and paths
+api.nvim_create_user_command(
+	'YankRelativePath',
+	':let @+=expand("%")',
+	{}
+)
+api.nvim_create_user_command(
+	'YankAbsolutePath',
+	':let @+=expand("%:p")',
+	{}
+)
+api.nvim_create_user_command(
+	'YankFilename',
+	':let @+=expand("%:t")',
+	{}
+)
+api.nvim_create_user_command(
+	'YankDirectory',
+	':let @+=expand("%:p:h")',
+	{}
+)
+-- convoluted way to yank selection as '<,'> doesn't work right
+api.nvim_create_user_command(
+	'YankSelectionToSystemReg',
+	':normal gv "+y',
+	{}
+)

@@ -120,15 +120,22 @@ use {
 
 
 -- send lines to the terminal
-	use { "kassio/neoterm" }
+	-- use { "kassio/neoterm" }
+	use {
+		"hkupty/iron.nvim",
+			config = function()
+        require("config.iron").setup()
+      end
+		--config = require("config.iron"),
+	}
 
     -- status line
     use {
       "nvim-lualine/lualine.nvim",
       config = function()
-        require("config.lualine").setup()
-      end,
-      requires = { "nvim-web-devicons" },
+				require('config.lualine').setup()
+			end,
+      requires = { "nvim-web-devicons", "nvim-gps"} ,
     }
 
 		-- fuzzy file finder
@@ -179,6 +186,15 @@ use {
 		use {
 			"junegunn/goyo.vim"
 		}
+
+		-- better movements
+		use {
+			"ggandor/leap.nvim",
+			config = function()
+        require('leap').set_default_keymaps()
+			end
+		}
+
 
 		-- Better Netrw
 		use {"tpope/vim-vinegar"}

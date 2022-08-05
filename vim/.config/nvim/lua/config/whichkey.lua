@@ -20,9 +20,8 @@ function M.setup()
   }
 
   local mappings = {
-    ["w"] = { "<cmd>update!<CR>", "Save" },
-    ["q"] = { "<cmd>q!<CR>", "Quit" },
 		["lg"] = { "<cmd>LazyGit<CR>", "Lazygit" },
+		["gy"] = { "<cmd>Goyo<CR>", "Goyo" },
 
     b = {
       name = "Buffer",
@@ -56,11 +55,19 @@ function M.setup()
 
 		t = {
 			name = "Terminal",
-			t = { "<cmd>Tnew<CR>", "Start terminal" },
-			l = { "<cmd>TREPLSendLine<CR>", "Send line" },
-			f = { "<cmd>TREPLSendFile<CR>", "Send File" },
-			p = { "<cmd>normal vip<CR><cmd>TREPLSendSelection<CR><Esc><cmd>normal }j<CR>", "Send paragraph" },
-			x = { "<cmd>Tclose<CR>", "Close terminal" },
+			z = { "<cmd>vsp<CR><cmd>terminal<CR>", "Start zsh terminal" },
+			t = { "<cmd>vsp<CR><cmd>IronReplHere<CR>", "Start REPL" },
+			l = { "<cmd>SendLineToREPL<CR>", "Send Line"},
+			p = { "<cmd>SendParagraphToREPL<CR>", "Send paragraph"},
+			f = { "<cmd>SendFunctionToREPL<CR>", "Send function"},
+			x = { "<cmd>CloseREPL<CR>", "Close REPL"},
+		},
+		y = {
+			name = "Yank",
+			f = {"<cmd>YankFilename<CR>", "Yank filename" },
+			d = {"<cmd>YankDirectory<CR>", "Yank directory" },
+			p = {"<cmd>YankAbsolutePath<CR>", "Yank path" },
+			r = {"<cmd>YankRelativePath<CR>", "Yank relative path" },
 		},
   }
 
@@ -71,7 +78,11 @@ function M.setup()
 
 		t = {
 			name = "Terminal",
-			s = { "<cmd>TREPLSendSelection<CR>", "Send selection" },
+			s = { "<cmd>SendSelectionToREPL<CR>", "Send selection" },
+		},
+		y = {
+			name = "Yank",
+			y = {"<Esc><cmd>YankSelectionToSystemReg<CR>", "Yank to system clipboard" },
 		},
 	}
 
