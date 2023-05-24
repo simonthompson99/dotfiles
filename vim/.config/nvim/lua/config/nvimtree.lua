@@ -9,7 +9,7 @@ function M.setup()
       relativenumber = true,
     },
     filters = {
-      custom = { ".git" },
+ --     custom = { ".git" },
     },
   }
 end

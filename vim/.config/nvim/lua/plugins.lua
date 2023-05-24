@@ -110,8 +110,8 @@ use {
 					config = function()
             require("nvim-lsp-installer").setup {}
             local lspconfig = require("lspconfig")
-       --     lspconfig.sumneko_lua.setup {}
-       --     lspconfig.pyright.setup {}
+						-- lspconfig.sumneko_lua.setup {}
+            lspconfig.pyright.setup {}
 						lspconfig.pylsp.setup {}
 						lspconfig.r_language_server.setup {}
 				end
@@ -129,6 +129,15 @@ use {
 		--config = require("config.iron"),
 	}
 
+	-- get a flaoting terminal
+	use {
+		"akinsho/toggleterm.nvim",
+		tag = 'v2.*',
+		config = function()
+		require("toggleterm").setup()
+			end
+		}
+
     -- status line
     use {
       "nvim-lualine/lualine.nvim",
@@ -145,15 +154,29 @@ use {
 		}
 
     -- Vimwiki
-    use {
-      "vimwiki/vimwiki",
-			config = function()
-        require("config.vimwiki").setup()
-      end
-    }
+    --use {
+    --  "vimwiki/vimwiki",
+		--	config = function()
+    --    require("config.vimwiki").setup()
+    --  end
+    --}
 
     -- Vim/TMUX Navigation
-    use { "christoomey/vim-tmux-navigator" }
+    -- use { "christoomey/vim-tmux-navigator" }
+		use { 'alexghergh/nvim-tmux-navigation', config = function()
+        require'nvim-tmux-navigation'.setup {
+            -- disable_when_zoomed = true, -- defaults to false
+            keybindings = {
+                left = "<C-h>",
+                down = "<C-j>",
+                up = "<C-k>",
+                right = "<C-l>",
+                last_active = "<C-\\>",
+                next = "<C-Space>",
+            }
+        }
+    end
+		}
 
     -- Whichkey
     use {
@@ -165,6 +188,9 @@ use {
 
     -- Indent guides
     use { "lukas-reineke/indent-blankline.nvim" }
+
+		-- python indentation (causes chaos, can't cope with tyep hints)
+		-- use { "Vimjas/vim-python-pep8-indent" }
 
 		-- automatic pairs
 		--use { "jiangmiao/auto-pairs" }

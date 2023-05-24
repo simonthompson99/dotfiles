@@ -8,7 +8,6 @@ alias prj='cd $MY_PROJ_FOLDER'
 alias shproj='cd $MY_PROJ_FOLDER/short-projects'
 alias utils='cd $MY_UTILS_FOLDER'
 alias scr='cd $MY_SCRATCH_FOLDER'
-alias vim="nvim"
 alias rr='pyenv activate utils && ranger && pyenv deactivate'
 # alias ip='iPython'
 alias visi='pyenv activate utils && visidata && pyenv deactivate'
@@ -21,8 +20,35 @@ alias script='echo "you did NOT want to do that\n"'
 
 # alias to run twosets and quicktab
 alias twosets='pyenv activate utils && python $MY_UTILS_FOLDER/twosets/twosets.py & pyenv deactivate'
-alias quicktab='pyenv activate utils && python $MY_UTILS_FOLDER/quicktab/quicktab.py & pyenv deactivate'
+# alias quicktab='pyenv activate utils && python $MY_UTILS_FOLDER/quicktab/quicktab.py & pyenv deactivate'
 alias mquicktab='pyenv activate utils && python $MY_UTILS_FOLDER/mquicktab/mquicktab.py & pyenv deactivate'
+
+# open nvim within pipenv shell if present (better for tmux navigator)
+function vim {
+    if [ -f "Pipfile" ] ; then
+        pipenv run nvim $1
+    else
+	nvim $1
+    fi
+  } 
+
+# quick frequency tab maker, takes input from clipboard
+function quicktab () {
+	pbpaste | sed -E "s/[^[:print:]\t]//g" | sort | uniq -c | sort -d
+}
+
+function assume-role() {
+  # run the assume-role command for a given role arn and role session name
+  # and export the secrets into the current session
+  # defaults to the ClinicalDataTransfer role in core_shared
+  export $(printf "AWS_ACCESS_KEY_ID=%s AWS_SECRET_ACCESS_KEY=%s AWS_SESSION_TOKEN=%s" \
+  $(aws sts assume-role \
+  --role-arn ${1:=arn:aws:iam::512426816668:role/ClinicalDataTransfer} \
+  --role-session-name ${2:=ClinicalDataTransfer} \
+  --query "Credentials.[AccessKeyId,SecretAccessKey,SessionToken]" \
+  --output text))
+}
+
 
 # function to open up temporary file in vim, can specify file extension after command
 # defaults to txt
@@ -116,3 +142,12 @@ eval "$(pyenv init --path)"
 
 NVIM_BEGINNER=~/.config/nvim-beginner
 alias nvb='XDG_DATA_HOME=$NVIM_BEGINNER/share XDG_CONFIG_HOME=$NVIM_BEGINNER nvim'
+
+# for GPG signing of commits https://cnfl.extge.co.uk/display/CLOUD/Configure+GPG+Signing+for+Git+Commits
+export GPG_TTY=$(tty)
+
+# for bat
+export BAT_THEME=Nord
+batdiff() {
+    git diff --name-only --relative --diff-filter=d | xargs bat --diff
+}

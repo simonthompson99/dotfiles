@@ -133,3 +133,7 @@ bindkey -M vicmd v edit-command-line
 # to init pyenv
 eval "$(pyenv init -)"
 if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
+
+# up and down arrow to scroll through search history
+bindkey "^[[A" history-search-backward
+bindkey "^[[B" history-search-forward

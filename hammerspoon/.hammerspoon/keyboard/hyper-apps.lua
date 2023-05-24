@@ -6,7 +6,8 @@
 --
 -- hs.fnutils.each(hs.application.runningApplications(), function(app) print(app:title()) end) gives list of application names
 return {
---  { 'c', 'Google Chrome' },     -- "c" for "Chrome"
+ -- { 'c', 'Google Chrome' },     -- "c" for "Chrome"
+  { 'b', 'Obsidian' },     -- "c" for "Chrome"
   { 'c', 'Firefox' },     -- "c" for "Chrome"
   { 'd', 'DBeaver' }, -- "D" for 'Data'
   { 'e', 'Microsoft Outlook' }, -- 'E' for email

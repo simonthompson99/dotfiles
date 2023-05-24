@@ -53,5 +53,5 @@ windows:
       panes:
         - rr
         - cd ~/scr
-  - w:
-      - cd 'OneDrive - Genomics England Ltd/'wiki && vim index.wiki
+  - p:
+      - cd ~/prj

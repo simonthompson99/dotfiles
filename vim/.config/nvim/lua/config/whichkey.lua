@@ -29,6 +29,11 @@ function M.setup()
       D = { "<Cmd>%bd|e#|bd#<Cr>", "Delete all buffers" },
     },
 
+    c = {
+      name = "Code",
+      d = { "<Cmd>lua vim.lsp.buf.definition()<CR>", "Go to definition" },
+    },
+
 		f = {
 			name = "Find",
 			f = { "<cmd>FzfLua files<cr>", "Files" },
@@ -47,15 +52,15 @@ function M.setup()
       u = { "<cmd>PackerUpdate<cr>", "Update" },
     },
 
-    w = {
-      name = "Vimwiki",
-      w = { "<cmd>VimwikiIndex<CR>", "Wiki Index" },
-      i = { "<cmd>VimwikiMakeDiaryNote<CR>", "Today" },
-    },
+    --w = {
+    --  name = "Vimwiki",
+    --  w = { "<cmd>VimwikiIndex<CR>", "Wiki Index" },
+    --  i = { "<cmd>VimwikiMakeDiaryNote<CR>", "Today" },
+    --},
 
 		t = {
 			name = "Terminal",
-			z = { "<cmd>vsp<CR><cmd>terminal<CR>", "Start zsh terminal" },
+			z = { "<cmd>ToggleTerm direction=float<CR>", "Start zsh terminal" },
 			t = { "<cmd>vsp<CR><cmd>IronReplHere<CR>", "Start REPL" },
 			l = { "<cmd>SendLineToREPL<CR>", "Send Line"},
 			p = { "<cmd>SendParagraphToREPL<CR>", "Send paragraph"},
