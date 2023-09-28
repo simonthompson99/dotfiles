@@ -20,3 +20,6 @@ vim.opt.rtp:prepend(lazypath)
 require "plugins"
 
 dofile(vim.g.base46_cache .. "defaults")
+
+vim.cmd "source ~/.config/nvim/lua/custom/ftplugins/json.vim"
+vim.cmd "source ~/.config/nvim/lua/custom/ftplugins/python.vim"

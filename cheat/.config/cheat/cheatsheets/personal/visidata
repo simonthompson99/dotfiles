@@ -4,3 +4,6 @@
 s/t     select/toggle rows
 gu      unselect all rows
 z| expr	filter rows based on a python expression
+
+# loading data
+vd -f tsv file.csv	force a particular format to load data
