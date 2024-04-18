@@ -9,6 +9,8 @@ local options = {
       "--line-number",
       "--column",
       "--smart-case",
+      "--hidden",
+      "--glob=!.git/"
     },
     prompt_prefix = "   ",
     selection_caret = "  ",

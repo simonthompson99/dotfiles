@@ -20,12 +20,16 @@ M.general = {
     ['<leader>tx'] = { "<cmd>CloseREPL<CR>", "Close REPL"},
     ['<leader>tz'] = { "<cmd>ToggleTerm direction=float<CR>", "Start zsh terminal" },
 
+    ['<leader>ds'] = { "<cmd>DiffSaved<CR>", "Get diff of buffer to saved file" },
+
   },
 
   v = {
     ["<leader>ts"] = {"<cmd>SendSelectionToREPL<CR>", "Send selection to REPL"},
     ["<leader>yy"] = {"<Esc><cmd>YankSelectionToSystemReg<CR>", "Yank to system clipboard"},
-  }
+  },
+
+
 }
 
 -- more keybinds!

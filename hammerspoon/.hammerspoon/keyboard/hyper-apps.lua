@@ -10,11 +10,11 @@ return {
   { 'b', 'Obsidian' },     -- "c" for "Chrome"
   { 'c', 'Firefox' },     -- "c" for "Chrome"
   { 'd', 'DBeaver' }, -- "D" for 'Data'
-  { 'e', 'Microsoft Outlook' }, -- 'E' for email
+  { 'e', 'Mail' }, -- 'E' for email
   { 'x', 'Microsoft Excel' },              -- "x" for "eXcel"
   { 'f', 'Finder' },            -- "F" for "Finder"
   { 'l', 'Calendar' },            -- "L" for "caLendar"
-  { 'm', 'Microsoft Teams' },            -- "M" for "Microsoft"
+  { 'm', 'Microsoft Teams (work or school)' },            -- "M" for "Microsoft"
   { 's', 'Slack' },             -- "S" for "Slack"
   { 'w', 'WorkFlowy' },             -- "W" for "WorkFlowy"
   { 't', 'iTerm' },             -- "T" for "Terminal"

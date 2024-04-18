@@ -33,6 +33,7 @@ local plugins = {
         "lua-language-server",
         "prettier",
         "terraform-ls",
+        "tflint",
         "yamlfmt",
         "yamllint",
       }
@@ -103,6 +104,7 @@ local plugins = {
         "terraform",
         "vim",
         "yaml",
+        "hcl",
       },
       indent = {
         enable = true,
@@ -112,7 +114,24 @@ local plugins = {
         },
       },
     }
+  },
+
+  -- add in deleting buffer from buffer picker
+  {
+      {
+    "nvim-telescope/telescope.nvim",
+    opts = function()
+      local conf = require "plugins.configs.telescope"
+      conf.defaults.mappings.i = {
+        ["<C-d>"] = require("telescope.actions").delete_buffer,
+      }
+
+      return conf
+    end,
   }
+  }
+
+
 
 
   -- To make a plugin not be loaded

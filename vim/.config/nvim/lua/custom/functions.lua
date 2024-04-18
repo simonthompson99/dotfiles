@@ -29,3 +29,9 @@ api.nvim_create_user_command(
 	{}
 )
 
+-- get diff between saved and buffer
+api.nvim_create_user_command(
+	'DiffSaved',
+	':w !diff % -',
+	{}
+)
