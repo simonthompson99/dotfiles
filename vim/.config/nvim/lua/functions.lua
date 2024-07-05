@@ -1,5 +1,12 @@
 local api = vim.api
 
+-- get diff between saved and buffer
+api.nvim_create_user_command(
+	'DiffSaved',
+	':w !diff % -',
+	{}
+)
+
 -- Yank filenames and paths
 api.nvim_create_user_command(
 	'YankRelativePath',
@@ -21,17 +28,4 @@ api.nvim_create_user_command(
 	':let @+=expand("%:p:h")',
 	{}
 )
---
--- convoluted way to yank selection as '<,'> doesn't work right
-api.nvim_create_user_command(
-	'YankSelectionToSystemReg',
-	':normal gv "+y',
-	{}
-)
 
--- get diff between saved and buffer
-api.nvim_create_user_command(
-	'DiffSaved',
-	':w !diff % -',
-	{}
-)

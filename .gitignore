@@ -3,4 +3,6 @@ vim/.local/share/nvim/*
 
 vim/.config/nvim/plugin/packer_compiled.lua
 
+vim/.old_config
+
 *.pyc
