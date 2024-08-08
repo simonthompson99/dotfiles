@@ -96,6 +96,13 @@ return {
     enabled = false
   },
 
+  {
+    "nvim-tree/nvim-tree.lua",
+    config = function()
+      require("configs.nvim-tree").setup()
+    end
+  },
+
   -- Language-specific repls
   {
 		"hkupty/iron.nvim",
