@@ -2,15 +2,15 @@ local options = {
   defaults = {
     vimgrep_arguments = {
       "rg",
-      "-L",
-      "--color=never",
-      "--no-heading",
-      "--with-filename",
-      "--line-number",
-      "--column",
-      "--smart-case",
+      -- "-L",
+      -- "--color=never",
+      -- "--no-heading",
+      -- "--with-filename",
+      -- "--line-number",
+      -- "--column",
+      -- "--smart-case",
       "--hidden",
-      "--glob=!.git/"
+      -- "--glob=!.git/"
     },
     prompt_prefix = "   ",
     selection_caret = "  ",
@@ -57,6 +57,12 @@ local options = {
   },
 
   extensions_list = { "themes", "terms" },
+
+  -- extensions = {
+  --   live_grep_args = {
+  --
+  --   }
+  -- }
 }
 
 return options

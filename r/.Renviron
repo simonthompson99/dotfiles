@@ -1,2 +1,5 @@
 #-- set the timezone, get valid timezone names with OlsonNames()
 TZ="Europe/London"
+
+DATABASECONNECTOR_JAR_FOLDER='/Users/simonthompson/env/packages/database_connector_jar_fldr'
+

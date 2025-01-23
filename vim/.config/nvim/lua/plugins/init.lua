@@ -78,18 +78,6 @@ return {
     end,
   },
 
-  -- for lazygit within vim
-  {
-    "kdheepak/lazygit.nvim",
-    cmd = {
-      "LazyGit",
-      "LazyGitConfig",
-      "LazyGitCurrentFile",
-      "LazyGitFilter",
-      "LazyGitFilterCurrentFile"
-    },
-  },
-
     -- disable nvterm as it doesn't assume pipenv properly
   {
     "NvChad/nvterm",
