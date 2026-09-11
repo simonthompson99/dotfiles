@@ -6,19 +6,19 @@
 --
 -- hs.fnutils.each(hs.application.runningApplications(), function(app) print(app:title()) end) gives list of application names
 return {
- -- { 'c', 'Google Chrome' },     -- "c" for "Chrome"
-  { 'b', 'Obsidian' },     -- "c" for "Chrome"
-  { 'c', 'Firefox' },     -- "c" for "Chrome"
-  { 'd', 'DBeaver' }, -- "D" for 'Data'
-  { 'e', 'Microsoft Outlook' }, -- 'E' for email
-  { 'x', 'Microsoft Excel' },              -- "x" for "eXcel"
-  { 'f', 'Finder' },            -- "F" for "Finder"
-  { 'l', 'Calendar' },            -- "L" for "caLendar"
-  { 'm', 'Microsoft Teams' },            -- "M" for "Microsoft"
-  { 's', 'Slack' },             -- "S" for "Slack"
-  { 'w', 'WorkFlowy' },             -- "W" for "WorkFlowy"
-  { 't', 'iTerm' },             -- "T" for "Terminal"
-  { 'p', 'Pocket Casts' },             -- "p" for "Pocketcasts"
-  { 'o', 'Spotify' },             -- "o" for "SpOtify"
-  { 'r', 'Firefox' },             -- "r" for "FiRefox"
+	{ "c", "Google Chrome" }, -- "c" for "Chrome"
+	{ "b", "Obsidian" }, -- "c" for "Chrome"
+	-- { "c", "Firefox" }, -- "c" for "Chrome"
+	{ "d", "DBeaver" }, -- "D" for 'Data'
+	{ "e", "Microsoft Outlook" }, -- 'E' for email
+	{ "x", "Microsoft Excel" }, -- "x" for "eXcel"
+	{ "f", "Finder" }, -- "F" for "Finder"
+	{ "l", "Calendar" }, -- "L" for "caLendar"
+	{ "m", "Microsoft Teams" }, -- "M" for "Microsoft"
+	{ "s", "Slack" }, -- "S" for "Slack"
+	{ "w", "WorkFlowy" }, -- "W" for "WorkFlowy"
+	{ "t", "kitty" }, -- "T" for "Terminal"
+	{ "p", "Pocket Casts" }, -- "p" for "Pocketcasts"
+	{ "o", "Spotify" }, -- "o" for "SpOtify"
+	{ "r", "Firefox" }, -- "r" for "FiRefox"
 }

@@ -1,3 +1,7 @@
+# The following lines were added by Docker Desktop to add commands to your PATH.
+export PATH="$PATH:/Users/simonthompson/.docker/bin"
+# End of Docker Desktop section.
+
 # important folders
 MY_PROJ_FOLDER="/Users/simonthompson/prj"
 MY_SCRATCH_FOLDER="/Users/simonthompson/scr"
@@ -9,11 +13,12 @@ alias shproj='cd $MY_PROJ_FOLDER/short-projects'
 alias utils='cd $MY_UTILS_FOLDER'
 alias scr='cd $MY_SCRATCH_FOLDER'
 alias rr='ranger'
-# alias ip='iPython'
+alias ip='iPython'
 alias visi='pyenv activate utils && visidata && pyenv deactivate'
 alias lal='ls -al'
 alias tsm='tmuxinator start main'
 alias lg='lazygit'
+alias pcaf='pre-commit run --all-files'
 
 # keep getting into trouble calling script by mistake when should be calling Rscript
 alias script='echo "you did NOT want to do that\n"'

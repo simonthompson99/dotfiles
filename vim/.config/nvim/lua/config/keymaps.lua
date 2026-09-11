@@ -18,3 +18,7 @@ map({ "n", "i", "v" }, "<C-k>", "<cmd>NvimTmuxNavigateUp<cr>")
 map({ "n", "i", "v" }, "<C-j>", "<cmd>NvimTmuxNavigateDown<cr>")
 
 map({ "n" }, "<leader>xd", "<cmd>DiffSave<cr>", { desc = "Diff buffer to saved" })
+
+-- easier buffer management
+map("n", "<C-S-TAB>", "<cmd>bprevious<cr>", { desc = "Prev Buffer" })
+map("n", "<C-TAB>", "<cmd>bnext<cr>", { desc = "Next Buffer" })
